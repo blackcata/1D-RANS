@@ -1,6 +1,6 @@
 F90=ifort
 TARGET= RANS_1D
-OBJECT= RANS_module.o RANS_main.o RANS_setup.o 
+OBJECT= RANS_module.o RANS_main.o RANS_setup.o RANS_poiseuille.f90
 
 all : $(TARGET)
 $(TARGET) : $(OBJECT)
