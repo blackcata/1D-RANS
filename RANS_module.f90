@@ -12,7 +12,9 @@
 
             INTEGER :: Ny
             REAL(KIND=8) :: del, dy, Re_tau, nu
+            CHARACTER(LEN=65) :: file_name, path_name
 
             REAL(KIND=8), DIMENSION(:), ALLOCATABLE   :: U, U_exac, Y
+
 
         END MODULE
