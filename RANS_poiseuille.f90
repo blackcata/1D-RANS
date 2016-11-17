@@ -35,6 +35,8 @@
 
           CALL TDMA_Solver(a,b,c,r,x,Ny)
 
+          U(0:Ny) = x(0:Ny)
+          
           DO j = 0,Ny
             print*,j,x(j)
           END DO
