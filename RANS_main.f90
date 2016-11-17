@@ -20,8 +20,9 @@
           path_name = 'RESULT'
           CALL SYSTEM('mkdir '//TRIM(path_name))
           CALL SYSTEM('rm -rf ./'//TRIM(path_name)//'/*')
-          
+
           CALL SETUP
           CALL POISEUILLE
+          CALL OUTPUT
 
         END PROGRAM RANS_main
