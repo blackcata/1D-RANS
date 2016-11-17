@@ -14,4 +14,5 @@
 
           IMPLICIT NONE
           
+          CALL SETUP
         END PROGRAM RANS_main
