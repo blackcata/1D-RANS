@@ -19,6 +19,9 @@
             IMPLICIT NONE
             INTEGER :: i,j
 
+            !--------------------------------!
+            !     Constants for simulation
+            !--------------------------------!
             Ny  = 100         ! the number of grid cells
             del = 1           ! the channel-half height
             dy  = (2*del)/NY  ! grid size
@@ -26,6 +29,9 @@
             Re_tau = 180      ! Reynolds number based on the friction velocity
             nu     = 1.004e-6 ! Kinematic viscosity of water at 20C
 
+            !------------------------------!
+            !    Constants for k-e model
+            !------------------------------!
             Cm  = 0.09
             Ce1 = 1.44
             Ce2 = 1.92
@@ -35,8 +41,12 @@
             ALLOCATE( U(0:NY), U_exac(0:Ny), Y(0:Ny) )
             ALLOCATE( k(0:Ny), dis(0:Ny), nu_T(0:Ny) )
 
+            !--------------------------------!
+            !       Initial Conditions
+            !--------------------------------!
             DO j = 0,Ny
-              Y(j) = j*dy
+              Y(j)      = j*dy
+              U(j)      = 0
               U_exac(j) = -nu/2*(Re_tau/del)**2 * Y(j) * (Y(j)-2*del)
             END DO
 

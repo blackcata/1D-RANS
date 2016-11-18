@@ -25,7 +25,7 @@
           a(0:Ny) = 1
           b(0:Ny) = -2
           c(0:Ny) = 1
-          x(0:Ny) = 0
+          x(0:Ny) = U(0:Ny)
           r(1:Ny-1) = -nu*(dy*Re_tau/del)**2
 
           b(0)  = 1
