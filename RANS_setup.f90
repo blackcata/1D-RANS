@@ -36,8 +36,8 @@
             ALLOCATE( k(0:Ny), dis(0:Ny), nu_T(0:Ny) )
 
             DO j = 0,Ny
-              Y(j) = -del + j*dy
-              U_exac(j) = -nu/2*(Re_tau/del)**2 * (Y(j)**2 - del**2)
+              Y(j) = j*dy
+              U_exac(j) = -nu/2*(Re_tau/del)**2 * Y(j) * (Y(j)-2*del)
             END DO
 
         END SUBROUTINE SETUP
