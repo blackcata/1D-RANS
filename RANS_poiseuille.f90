@@ -14,7 +14,7 @@
               ONLY : Ny, dy, del, Re_tau, nu
 
           USE RANS_module,                                                      &
-              ONLY : U, U_exac
+              ONLY : U
 
           IMPLICIT NONE
           INTEGER :: i, j
@@ -28,17 +28,15 @@
           x(0:Ny) = 0
           r(1:Ny-1) = -nu*(dy*Re_tau/del)**2
 
-          b(0) = 1
+          b(0)  = 1
           b(Ny) = 1
-          r(0) = 0
+          a(Ny) = 0
+          c(0)  = 0
+          r(0)  = 0
           r(Ny) = 0
 
           CALL TDMA_Solver(a,b,c,r,x,Ny)
 
           U(0:Ny) = x(0:Ny)
-          
-          DO j = 0,Ny
-            print*,j,x(j)
-          END DO
 
       END SUBROUTINE POISEUILLE
