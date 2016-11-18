@@ -18,7 +18,7 @@
 
           IMPLICIT NONE
           INTEGER :: i, j
-          REAL(KIND=8), DIMENSION(:), ALLOCATABLE :: a,b,c,r,x
+          REAL(KIND=8),DIMENSION(:),ALLOCATABLE :: a,b,c,r,x
 
           ALLOCATE ( a(0:Ny), b(0:Ny), c(0:Ny), r(0:Ny), x(0:Ny))
 

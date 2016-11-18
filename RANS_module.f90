@@ -15,7 +15,7 @@
             REAL(KIND=8) :: Cm, Ce1, Ce2, Sk, Se
             CHARACTER(LEN=65) :: file_name, path_name
 
-            REAL(KIND=8), DIMENSION(:), ALLOCATABLE   :: U, U_exac, Y
+            REAL(KIND=8),DIMENSION(:),ALLOCATABLE :: U, U_exac, Y, k, dis, nu_T
 
 
         END MODULE

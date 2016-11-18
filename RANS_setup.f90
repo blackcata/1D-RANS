@@ -14,7 +14,7 @@
                 ONLY : Ny, del, dy, Re_tau, nu, Cm, Ce1, Ce2, Sk, Se
 
             USE RANS_module,                                                    &
-                ONLY : U, U_exac, Y
+                ONLY : U, U_exac, Y, k, dis, nu_T
 
             IMPLICIT NONE
             INTEGER :: i,j
@@ -31,8 +31,9 @@
             Ce2 = 1.92
             Sk  = 1.0
             Se  = 1.3
-            
+
             ALLOCATE( U(0:NY), U_exac(0:Ny), Y(0:Ny) )
+            ALLOCATE( k(0:Ny), dis(0:Ny), nu_T(0:Ny) )
 
             DO j = 0,Ny
               Y(j) = -del + j*dy

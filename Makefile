@@ -1,7 +1,7 @@
 F90=ifort
 FCFLAGS=-O2
 
-TARGET= RANS_1D
+TARGET= 1D_RANS
 OBJECT= RANS_module.o RANS_main.o RANS_setup.o RANS_poiseuille.o \
 		RANS_output.o TDMA_Solver.o
 
