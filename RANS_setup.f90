@@ -11,7 +11,7 @@
         SUBROUTINE SETUP
 
             USE RANS_module,                                                    &
-                ONLY : Ny, del, dy, Re_tau, nu
+                ONLY : Ny, del, dy, Re_tau, nu, Cm, Ce1, Ce2, Sk, Se
 
             USE RANS_module,                                                    &
                 ONLY : U, U_exac, Y
@@ -26,6 +26,12 @@
             Re_tau = 180      ! Reynolds number based on the friction velocity
             nu     = 1.004e-6 ! Kinematic viscosity of water at 20C
 
+            Cm  = 0.09
+            Ce1 = 1.44
+            Ce2 = 1.92
+            Sk  = 1.0
+            Se  = 1.3
+            
             ALLOCATE( U(0:NY), U_exac(0:Ny), Y(0:Ny) )
 
             DO j = 0,Ny
