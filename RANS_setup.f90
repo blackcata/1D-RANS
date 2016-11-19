@@ -49,6 +49,7 @@
               U(j)      = 0
               k(j)      = 0.0100
               dis(j)    = 0.0015
+              nu_T(j)   = 0
               U_exac(j) = -nu/2*(Re_tau/del)**2 * Y(j) * (Y(j)-2*del)
             END DO
 

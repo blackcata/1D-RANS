@@ -23,6 +23,8 @@
 
           CALL SETUP
           CALL POISEUILLE
+
+          CALL GETNUT
           CALL OUTPUT
 
         END PROGRAM RANS_main
