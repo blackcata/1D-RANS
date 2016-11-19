@@ -25,6 +25,7 @@
           CALL POISEUILLE
 
           CALL GETNUT
+          CALL GETU
           CALL OUTPUT
 
         END PROGRAM RANS_main
