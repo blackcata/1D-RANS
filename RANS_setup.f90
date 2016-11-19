@@ -45,7 +45,7 @@
             alpha = 0.7
             beta  = 0.7
 
-            ALLOCATE( U(0:NY), U_new, U_exac(0:Ny), Y(0:Ny) )
+            ALLOCATE( U(0:NY), U_new(0:Ny), U_exac(0:Ny), Y(0:Ny) )
             ALLOCATE( k(0:Ny), dis(0:Ny), nu_T(0:Ny) )
 
             !--------------------------------!
@@ -57,6 +57,7 @@
               k(j)      = 0.0100
               dis(j)    = 0.0015
               nu_T(j)   = 0
+              U_new(j)  = 0
               U_exac(j) = -(nu/(2*del))*(Re_tau/del)**2 * Y(j) * (Y(j)-2*del)
             END DO
 
