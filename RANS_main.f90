@@ -26,6 +26,7 @@
 
           CALL GETNUT
           CALL GETU
+          CALL GETK
           CALL OUTPUT
 
         END PROGRAM RANS_main

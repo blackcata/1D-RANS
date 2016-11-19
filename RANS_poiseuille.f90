@@ -38,5 +38,6 @@
           CALL TDMA_Solver(a,b,c,r,x,Ny)
 
           U(0:Ny) = x(0:Ny)
+          DEALLOCATE(a,b,c,r,x)
 
       END SUBROUTINE POISEUILLE

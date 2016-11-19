@@ -45,20 +45,23 @@
             alpha = 0.5
             beta  = 0.5
 
-            ALLOCATE( U(0:NY), U_new(0:Ny), U_exac(0:Ny), Y(0:Ny) )
-            ALLOCATE( k(0:Ny), dis(0:Ny), nu_T(0:Ny) )
+            ALLOCATE( U(0:NY),U_new(0:Ny),U_exac(0:Ny),Y(0:Ny) )
+            ALLOCATE( k(0:Ny),k_new(0:Ny),dis(0:Ny),dis_new(0:Ny),nu_T(0:Ny) )
 
             !--------------------------------!
             !       Initial Conditions
             !--------------------------------!
             DO j = 0,Ny
-              Y(j)      = j*dy
-              U(j)      = 0
-              k(j)      = 0.0100
-              dis(j)    = 0.0015
-              nu_T(j)   = 0
-              U_new(j)  = 0
-              U_exac(j) = -(nu/(2*del))*(Re_tau/del)**2 * Y(j) * (Y(j)-2*del)
+              Y(j)        = j*dy
+              U(j)        = 0
+              k(j)        = 0.0100
+              dis(j)      = 0.0015
+              nu_T(j)     = 0
+
+              k_new(j)    = 0
+              U_new(j)    = 0
+              diss_new(j) = 0
+              U_exac(j)   = -(nu/(2*del))*(Re_tau/del)**2 * Y(j) * (Y(j)-2*del)
             END DO
 
         END SUBROUTINE SETUP

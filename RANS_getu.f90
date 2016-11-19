@@ -1,8 +1,8 @@
 !-----------------------------------------------------------------------------------!
 !
-!   PROGRAM : RANS_getnut.f90
+!   PROGRAM : RANS_getu.f90
 !
-!   PURPOSE : Get Nu_t(turbulent kinematic viscosity) using k-e model relation
+!   PURPOSE : Get U(mean velocity) using k-e model relation
 !
 !                                                             2016.11.19 K.Noh
 !
@@ -47,4 +47,6 @@
 
             U_new(0:Ny) = beta * x(0:Ny) + (1-beta) * U(0:Ny)
 
+            DEALLOCATE(a,b,c,r,x)
+            
         END SUBROUTINE GETU

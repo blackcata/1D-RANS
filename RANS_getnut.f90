@@ -19,5 +19,5 @@
             DO j = 0,Ny
               nu_T(j) = Cm * k(j)**2 / dis(j)
             END DO
-
+            
         END SUBROUTINE GETNUT
