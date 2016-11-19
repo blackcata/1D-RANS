@@ -12,10 +12,11 @@
 
             INTEGER :: Ny
             REAL(KIND=8) :: del, dy, Re_tau, nu
-            REAL(KIND=8) :: Cm, Ce1, Ce2, Sk, Se
+            REAL(KIND=8) :: Cm, Ce1, Ce2, Sk, Se, alpha, beta
             CHARACTER(LEN=65) :: file_name, path_name
 
-            REAL(KIND=8),DIMENSION(:),ALLOCATABLE :: U, U_exac, Y, k, dis, nu_T
+            REAL(KIND=8),DIMENSION(:),ALLOCATABLE :: U, U_exac, Y, k, dis, nu_T,&
+                                                     U_new
 
 
         END MODULE

@@ -11,7 +11,7 @@
         SUBROUTINE GETU
 
             USE RANS_module,                                                    &
-              ONLY : Ny, dy, nu, del, Re_tau
+              ONLY : Ny, dy, nu, del, Re_tau, alpha, beta
 
             USE RANS_module,                                                    &
               ONLY : U, nu_T
@@ -46,6 +46,5 @@
             CALL TDMA_Solver(a,b,c,r,x,Ny)
 
             U(0:Ny) = x(0:Ny)
-
 
         END SUBROUTINE GETU

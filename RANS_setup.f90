@@ -11,10 +11,11 @@
         SUBROUTINE SETUP
 
             USE RANS_module,                                                    &
-                ONLY : Ny, del, dy, Re_tau, nu, Cm, Ce1, Ce2, Sk, Se
+                ONLY : Ny, del, dy, Re_tau, nu,                                 &
+                       Cm, Ce1, Ce2, Sk, Se, alpha, beta
 
             USE RANS_module,                                                    &
-                ONLY : U, U_exac, Y, k, dis, nu_T
+                ONLY : U, U_exac, U_new, Y, k, dis, nu_T
 
             IMPLICIT NONE
             INTEGER :: i,j
@@ -38,7 +39,13 @@
             Sk  = 1.0
             Se  = 1.3
 
-            ALLOCATE( U(0:NY), U_exac(0:Ny), Y(0:Ny) )
+            !------------------------------!
+            !      Relaxation factors
+            !------------------------------!
+            alpha = 0.7
+            beta  = 0.7
+
+            ALLOCATE( U(0:NY), U_new, U_exac(0:Ny), Y(0:Ny) )
             ALLOCATE( k(0:Ny), dis(0:Ny), nu_T(0:Ny) )
 
             !--------------------------------!
