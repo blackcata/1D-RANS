@@ -11,13 +11,16 @@
         SUBROUTINE GETNUT
 
             USE RANS_module,                                                    &
-              ONLY : Ny, Cm, k, dis, nu_T
+              ONLY : Ny, dy, nu, del, Re_tau
+
+            USE RANS_module,                                                    &
+              ONLY : U, nu_T
 
             IMPLICIT NONE
             INTEGER :: i,j
+            REAL(KIND=8) :: C0, u_tau
 
-            DO j = 0,Ny
-              nu_T(j) = Cm * k(j)**2 / dis(j)
-            END DO
+            u_tau = Re_tau*nu / del
+            C0 = u_tau**2 / del
 
         END SUBROUTINE GETNUT

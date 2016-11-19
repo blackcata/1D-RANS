@@ -23,7 +23,7 @@
             !     Constants for simulation
             !--------------------------------!
             Ny  = 100         ! the number of grid cells
-            del = 1           ! the channel-half height
+            del = 2          ! the channel-half height
             dy  = (2*del)/NY  ! grid size
 
             Re_tau = 180      ! Reynolds number based on the friction velocity
@@ -50,7 +50,7 @@
               k(j)      = 0.0100
               dis(j)    = 0.0015
               nu_T(j)   = 0
-              U_exac(j) = -nu/2*(Re_tau/del)**2 * Y(j) * (Y(j)-2*del)
+              U_exac(j) = -(nu/(2*del))*(Re_tau/del)**2 * Y(j) * (Y(j)-2*del)
             END DO
 
         END SUBROUTINE SETUP
