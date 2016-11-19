@@ -27,7 +27,7 @@
             dy  = (2*del)/NY  ! grid size
 
             Re_tau = 180      ! Reynolds number based on the friction velocity
-            nu     = 1.004e-6 ! Kinematic viscosity of water at 20C
+            nu     = 3.5000e-4 ! Kinematic viscosity of reference data
 
             !------------------------------!
             !    Constants for k-e model
@@ -47,6 +47,8 @@
             DO j = 0,Ny
               Y(j)      = j*dy
               U(j)      = 0
+              k(j)      = 0.0100
+              dis(j)    = 0.0015
               U_exac(j) = -nu/2*(Re_tau/del)**2 * Y(j) * (Y(j)-2*del)
             END DO
 
