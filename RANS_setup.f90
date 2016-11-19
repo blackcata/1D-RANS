@@ -15,7 +15,7 @@
                        Cm, Ce1, Ce2, Sk, Se, alpha, beta
 
             USE RANS_module,                                                    &
-                ONLY : U, U_exac, U_new, Y, k, dis, nu_T
+                ONLY : U, U_exac, U_new, Y, k, k_new, dis, dis_new, nu_T
 
             IMPLICIT NONE
             INTEGER :: i,j
@@ -60,7 +60,7 @@
 
               k_new(j)    = 0
               U_new(j)    = 0
-              diss_new(j) = 0
+              dis_new(j) = 0
               U_exac(j)   = -(nu/(2*del))*(Re_tau/del)**2 * Y(j) * (Y(j)-2*del)
             END DO
 

@@ -17,7 +17,7 @@
             ONLY : Ny
 
         USE RANS_module,                                                         &
-            ONLY : Y, U, U_new,U_exac
+            ONLY : Y, U, U_new, U_exac, k, k_new
 
         IMPLICIT NONE
         INTEGER :: i, j
@@ -27,6 +27,14 @@
         WRITE(100,*) 'VARIABLES="y","U","U_new","U_exac"'
         DO j = 0,Ny
             WRITE(100,*) Y(j), U(j), U_new(j), U_exac(j)
+        END DO
+        CLOSE(100)
+
+        file_name = TRIM(path_name)//'/k.plt'
+        OPEN(100,FILE=file_name,FORM='FORMATTED',POSITION='APPEND')
+        WRITE(100,*) 'VARIABLES="y","k","k_new"'
+        DO j = 0,Ny
+            WRITE(100,*) Y(j), k(j), k_new(j)
         END DO
         CLOSE(100)
 
