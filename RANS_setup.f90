@@ -15,7 +15,7 @@
                        Cm, Ce1, Ce2, Sk, Se, alpha, beta
 
             USE RANS_module,                                                    &
-                ONLY : U, U_exac, U_new, Y, k, k_new, dis, dis_new, nu_T
+                ONLY : U, U_exac, U_new, Y, k, k_new, dis, dis_new, nu_T, prod
 
             IMPLICIT NONE
             INTEGER :: i,j
@@ -42,10 +42,10 @@
             !------------------------------!
             !      Relaxation factors
             !------------------------------!
-            alpha = 0.9
-            beta  = 0.9
+            alpha = 0.7
+            beta  = 0.1
 
-            ALLOCATE( U(0:NY),U_new(0:Ny),U_exac(0:Ny),Y(0:Ny) )
+            ALLOCATE( U(0:NY),U_new(0:Ny),U_exac(0:Ny),Y(0:Ny),prod(0:Ny) )
             ALLOCATE( k(0:Ny),k_new(0:Ny),dis(0:Ny),dis_new(0:Ny),nu_T(0:Ny) )
 
             !--------------------------------!
@@ -57,6 +57,7 @@
               k(j)        = 0.0100
               dis(j)      = 0.0015
               nu_T(j)     = 0
+              prod(j)     = 0
 
               k_new(j)    = 0
               U_new(j)    = 0

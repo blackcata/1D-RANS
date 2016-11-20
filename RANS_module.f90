@@ -16,7 +16,7 @@
             CHARACTER(LEN=65) :: file_name, path_name
 
             REAL(KIND=8),DIMENSION(:),ALLOCATABLE :: U, U_exac, Y, k, dis, nu_T,&
-                                                     U_new, k_new, dis_new
+                                                     U_new, k_new, dis_new, prod
 
 
         END MODULE

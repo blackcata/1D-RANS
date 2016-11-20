@@ -47,9 +47,6 @@
             CALL TDMA_Solver(a,b,c,r,x,Ny)
 
             dis_new(0:Ny) = beta * x(0:Ny) + (1-beta) * dis(0:Ny)
-            DO j= 0,Ny
-              print*,x(j),dis(j),dis_new(j)
-            END DO
             DEALLOCATE(a,b,c,r,x)
 
         END SUBROUTINE GETDIS
