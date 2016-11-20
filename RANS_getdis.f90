@@ -14,7 +14,7 @@
               ONLY : Ny, dy, nu, Se, Ce1, Ce2, alpha, beta
 
             USE RANS_module,                                                    &
-              ONLY : k_new, dis, dis_new, U_new, nu_T
+              ONLY : k_new, dis, dis_new, U_new, nu_T, prod
 
             IMPLICIT NONE
             INTEGER :: i,j
@@ -27,9 +27,9 @@
               a(j) =   nu_T(j-1) + nu_T(j)
               b(j) = -(nu_T(j+1) + 2*nu_T(j) + nu_T(j-1))/alpha
               c(j) =   nu_T(j+1) + nu_T(j)
-              r(j) = 2*dy**2*Se* (Ce2*dis(j)**2/k_new(j)                        &
-              -Ce1*nu_T(j)*dis(j)/k_new(j)*((U_new(j+1) - U_new(j-1))/(2*dy))**2)&
-                      + a(j) * dis(j) * (1-alpha) /alpha
+              r(j) = 2*dy**2*Se* ( Ce2*dis(j)**2/k_new(j)                       &
+                                  - Ce1*nu_T(j)*dis(j)/k_new(j)*prod(j) )       &
+                    + a(j) * dis(j) * (1-alpha) /alpha
             END DO
 
             x(0:Ny) = dis(0:Ny)
