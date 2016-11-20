@@ -11,21 +11,21 @@
         SUBROUTINE GETU
 
             USE RANS_module,                                                    &
-              ONLY : Ny, dy, nu, del, Re_tau, alpha, beta
+              ONLY : Ny, dy, nu, del, Re_tau, u_tau ,alpha, beta
 
             USE RANS_module,                                                    &
               ONLY : U, U_new, nu_T
 
             IMPLICIT NONE
             INTEGER :: i,j
-            REAL(KIND=8) :: C0, u_tau
+            REAL(KIND=8) :: C0, resi
 
             REAL(KIND=8),DIMENSION(:),ALLOCATABLE :: a,b,c,r,x
 
             ALLOCATE ( a(0:Ny), b(0:Ny), c(0:Ny), r(0:Ny), x(0:Ny))
 
-            u_tau = Re_tau*nu / del
-            C0 = u_tau**2 / del
+            resi = 0
+            C0   = u_tau**2 / del
 
             !-----------------------------------------------------------!
             !                     Set TDMA constants
@@ -58,6 +58,10 @@
             !                   Relaxation & Update
             !-----------------------------------------------------------!
             U_new(0:Ny) = beta * x(0:Ny) + (1-beta) * U(0:Ny)
+            DO j = 0,Ny
+              resi = resi + (U_new(j) - U(j))**2
+            END DO
+            print*,sqrt(resi)
             U(0:Ny) = U_new(0:Ny)
             DEALLOCATE(a,b,c,r,x)
 

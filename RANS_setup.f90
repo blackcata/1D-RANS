@@ -23,7 +23,7 @@
             !-----------------------------------------------------------!
             !                 Constants for simulation
             !-----------------------------------------------------------!
-            itmax = 10
+            itmax = 30             ! maximum interation number 
             Ny  = 100              ! the number of grid cells
             del = 1                ! the channel-half height
             dy  = (2*del)/Ny       ! grid size
