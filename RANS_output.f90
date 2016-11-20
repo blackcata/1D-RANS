@@ -17,7 +17,7 @@
             ONLY : Ny,del,Re_tau
 
         USE RANS_module,                                                        &
-            ONLY : Y, U, U_new, U_exac, k, k_new, dis, dis_new
+            ONLY : Y, U, U_new, U_exac, k, k_new, dis, dis_new, nu_T
 
         IMPLICIT NONE
         INTEGER :: i, j
@@ -40,7 +40,7 @@
         OPEN(100,FILE=file_name,FORM='FORMATTED',POSITION='APPEND')
         WRITE(100,*) 'VARIABLES="Y","Y+","k","k_new"'
         DO j = 0,Ny
-            WRITE(100,*) Y(j), Y(j)/(del/Re_tau), k(j), k_new(j)
+            WRITE(100,"(4F15.9)") Y(j), Y(j)/(del/Re_tau), k(j), k_new(j)
         END DO
         CLOSE(100)
 
@@ -51,7 +51,7 @@
         OPEN(100,FILE=file_name,FORM='FORMATTED',POSITION='APPEND')
         WRITE(100,*) 'VARIABLES="Y","Y+","dis","dis_new"'
         DO j = 0,Ny
-            WRITE(100,*) Y(j), Y(j)/(del/Re_tau), dis(j), dis_new(j)
+            WRITE(100,"(4F15.9)") Y(j), Y(j)/(del/Re_tau), dis(j), dis_new(j)
         END DO
         CLOSE(100)
 

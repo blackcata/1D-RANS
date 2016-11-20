@@ -42,8 +42,8 @@
             !------------------------------!
             !      Relaxation factors
             !------------------------------!
-            alpha = 0.5
-            beta  = 0.5
+            alpha = 0.9
+            beta  = 0.9
 
             ALLOCATE( U(0:NY),U_new(0:Ny),U_exac(0:Ny),Y(0:Ny) )
             ALLOCATE( k(0:Ny),k_new(0:Ny),dis(0:Ny),dis_new(0:Ny),nu_T(0:Ny) )

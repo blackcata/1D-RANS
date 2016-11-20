@@ -31,11 +31,14 @@
               a(j) =   2*nu + nu_T(j-1) + nu_T(j)
               b(j) = -(4*nu + nu_T(j+1) + 2*nu_T(j) + nu_T(j-1))/alpha
               c(j) =   2*nu + nu_T(j+1) + nu_T(j)
-              r(j) = -2*dy*dy*C0 + a(j) * U(j) * (1-alpha) /alpha
+              r(j) = -2*dy**2*C0 + a(j) * U(j) * (1-alpha) /alpha
             END DO
 
             x(0:Ny) = U(0:Ny)
 
+            !------------------------------!
+            !     Boundary conditions
+            !------------------------------!
             b(0)  = 1
             b(Ny) = 1
             a(Ny) = 0
@@ -48,5 +51,5 @@
             U_new(0:Ny) = beta * x(0:Ny) + (1-beta) * U(0:Ny)
 
             DEALLOCATE(a,b,c,r,x)
-            
+
         END SUBROUTINE GETU

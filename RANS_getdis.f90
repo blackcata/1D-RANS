@@ -1,20 +1,20 @@
 !-----------------------------------------------------------------------------------!
 !
-!   PROGRAM : RANS_getk.f90
+!   PROGRAM : RANS_getdis.f90
 !
-!   PURPOSE : Get k(turbulent kinetic energy) using k-e model relation
+!   PURPOSE : Get dis(dissipation) using k-e model relation
 !
-!                                                             2016.11.19 K.Noh
+!                                                             2016.11.20 K.Noh
 !
 !-----------------------------------------------------------------------------------!
 
-        SUBROUTINE GETK
+        SUBROUTINE GETDIS
 
             USE RANS_module,                                                    &
-              ONLY : Ny, dy, nu, Sk, alpha, beta
+              ONLY : Ny, dy, nu, Se, Ce1, Ce2, alpha, beta
 
             USE RANS_module,                                                    &
-              ONLY : k, k_new, dis, U_new, nu_T
+              ONLY : k_new, dis, dis_new, U_new, nu_T
 
             IMPLICIT NONE
             INTEGER :: i,j
@@ -27,11 +27,12 @@
               a(j) =   nu_T(j-1) + nu_T(j)
               b(j) = -(nu_T(j+1) + 2*nu_T(j) + nu_T(j-1))/alpha
               c(j) =   nu_T(j+1) + nu_T(j)
-              r(j) = 2*dy**2*Sk* (dis(j) - nu_T(j) * ((U_new(j+1) - U_new(j-1))/(2*dy))**2 )&
-                      + a(j) * k(j) * (1-alpha) /alpha
+              r(j) = 2*dy**2*Se* (Ce2*dis(j)**2/k_new(j)                        &
+              -Ce1*nu_T(j)*dis(j)/k_new(j)*((U_new(j+1) - U_new(j-1))/(2*dy))**2)&
+                      + a(j) * dis(j) * (1-alpha) /alpha
             END DO
 
-            x(0:Ny) = k(0:Ny)
+            x(0:Ny) = dis(0:Ny)
 
             !------------------------------!
             !     Boundary conditions
@@ -40,12 +41,15 @@
             b(Ny) = 1
             a(Ny) = 0
             c(0)  = 0
-            r(0)  = 0
-            r(Ny) = 0
+            r(0)  = nu*k_new(1)/(dy**2)
+            r(Ny) = nu*k_new(Ny-1)/(dy**2)
 
             CALL TDMA_Solver(a,b,c,r,x,Ny)
 
-            k_new(0:Ny) = beta * x(0:Ny) + (1-beta) * k(0:Ny)
+            dis_new(0:Ny) = beta * x(0:Ny) + (1-beta) * dis(0:Ny)
+            DO j= 0,Ny
+              print*,x(j),dis(j),dis_new(j)
+            END DO
             DEALLOCATE(a,b,c,r,x)
 
-        END SUBROUTINE GETK
+        END SUBROUTINE GETDIS
