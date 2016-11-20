@@ -55,10 +55,10 @@
             CALL TDMA_Solver(a,b,c,r,x,Ny)
 
             !-----------------------------------------------------------!
-            !                        Relaxation
+            !                   Relaxation & Update
             !-----------------------------------------------------------!
             U_new(0:Ny) = beta * x(0:Ny) + (1-beta) * U(0:Ny)
-
+            U(0:Ny) = U_new(0:Ny)
             DEALLOCATE(a,b,c,r,x)
 
         END SUBROUTINE GETU

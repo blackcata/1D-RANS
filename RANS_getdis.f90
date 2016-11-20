@@ -56,6 +56,7 @@
             !                   Relaxation & Update
             !-----------------------------------------------------------!
             dis_new(0:Ny) = beta * x(0:Ny) + (1-beta) * dis(0:Ny)
+            dis(0:Ny) = dis_new(0:Ny)
             DEALLOCATE(a,b,c,r,x)
 
         END SUBROUTINE GETDIS

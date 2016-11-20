@@ -52,9 +52,10 @@
             CALL TDMA_Solver(a,b,c,r,x,Ny)
 
             !-----------------------------------------------------------!
-            !                        Relaxation
+            !                   Relaxation & Update
             !-----------------------------------------------------------!
             k_new(0:Ny) = beta * x(0:Ny) + (1-beta) * k(0:Ny)
+            k(0:Ny) = k_new(0:Ny)
             DEALLOCATE(a,b,c,r,x)
 
         END SUBROUTINE GETK
