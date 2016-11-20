@@ -55,4 +55,6 @@
         END DO
         CLOSE(100)
 
+        DEALLOCATE(U,U_new,U_exac,Y,k,k_new,dis,dis_new,nu_T)
+
     END SUBROUTINE OUTPUT
