@@ -12,7 +12,7 @@
 
             USE RANS_module,                                                    &
                 ONLY : Ny, del, dy, Re_tau, nu,                                 &
-                       Cm, Ce1, Ce2, Sk, Se, alpha, beta
+                       Cm, Ce1, Ce2, Sk, Se, alpha, beta, itmax
 
             USE RANS_module,                                                    &
                 ONLY : U, U_exac, U_new, Y, k, k_new, dis, dis_new, nu_T, prod
@@ -23,6 +23,7 @@
             !--------------------------------!
             !     Constants for simulation
             !--------------------------------!
+            itmax = 1
             Ny  = 100         ! the number of grid cells
             del = 1          ! the channel-half height
             dy  = (2*del)/NY  ! grid size
