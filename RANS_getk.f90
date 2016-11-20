@@ -27,7 +27,7 @@
               a(j) =   nu_T(j-1) + nu_T(j)
               b(j) = -(nu_T(j+1) + 2*nu_T(j) + nu_T(j-1))/alpha
               c(j) =   nu_T(j+1) + nu_T(j)
-              r(j) = 2*dy*2*Sk* (dis(j) - nu_T(j) * (U_new(j+1) - U_new(j-1))/(2*dy**2))&
+              r(j) = 2*dy*2*Sk* (dis(j) - nu_T(j) * ((U_new(j+1) - U_new(j-1))/(2*dy))**2 )&
                       + a(j) * k(j) * (1-alpha) /alpha
             END DO
 

@@ -44,12 +44,6 @@ xlabel('y+')
 ylabel('u+')
 axis([1 max(Yp)+20 0 max(U)+2])
 
-%% Writing Y,Yp,U,k %%
-fileID = fopen('CHANNEL_0180_profile.plt','w');
-fprintf(fileID,'VARIABLES="Y","Y+","U","k" \n');
-fprintf(fileID,'%f %f %f %f \n',[Y' Yp' U' k']');
-fclose(fileID);
-
 %% %%
 
 Re_tau = 180
@@ -78,3 +72,10 @@ semilogx(Yp(1:95),dissp)
 xlabel('y+')
 ylabel('diss')
 axis([1 max(Yp)+20 0 max(dissp)])
+
+%% Writing Y,Yp,U,k %%
+fileID = fopen('CHANNEL_0180_profile.plt','w');
+fprintf(fileID,'VARIABLES="Y","Y+","U","k","k+","diss","diss+" \n');
+fprintf(fileID,'%f %f %f %f \n',[Y' Yp' U' k' (k'*u_tau^2), diss', dissp']');
+fclose(fileID);
+

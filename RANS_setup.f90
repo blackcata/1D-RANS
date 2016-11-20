@@ -24,7 +24,7 @@
             !     Constants for simulation
             !--------------------------------!
             Ny  = 100         ! the number of grid cells
-            del = 2          ! the channel-half height
+            del = 1          ! the channel-half height
             dy  = (2*del)/NY  ! grid size
 
             Re_tau = 180      ! Reynolds number based on the friction velocity

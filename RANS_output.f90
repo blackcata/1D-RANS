@@ -13,15 +13,18 @@
         USE RANS_module,                                                        &
             ONLY : file_name, path_name
 
-        USE RANS_module,                                                         &
+        USE RANS_module,                                                        &
             ONLY : Ny,del,Re_tau
 
-        USE RANS_module,                                                         &
-            ONLY : Y, U, U_new, U_exac, k, k_new
+        USE RANS_module,                                                        &
+            ONLY : Y, U, U_new, U_exac, k, k_new, dis, dis_new
 
         IMPLICIT NONE
         INTEGER :: i, j
 
+        !----------------------------------------------------------!
+        !              Outputs for U(Mean velocity)
+        !----------------------------------------------------------!
         file_name = TRIM(path_name)//'/U.plt'
         OPEN(100,FILE=file_name,FORM='FORMATTED',POSITION='APPEND')
         WRITE(100,*) 'VARIABLES="Y","Y+",U","U_new","U_exac"'
@@ -30,11 +33,25 @@
         END DO
         CLOSE(100)
 
+        !----------------------------------------------------------!
+        !         Outputs for k(Turbulent kinetic energy)
+        !----------------------------------------------------------!
         file_name = TRIM(path_name)//'/k.plt'
         OPEN(100,FILE=file_name,FORM='FORMATTED',POSITION='APPEND')
         WRITE(100,*) 'VARIABLES="Y","Y+","k","k_new"'
         DO j = 0,Ny
             WRITE(100,*) Y(j), Y(j)/(del/Re_tau), k(j), k_new(j)
+        END DO
+        CLOSE(100)
+
+        !----------------------------------------------------------!
+        !            Outputs for epsilon(dissipation)
+        !----------------------------------------------------------!
+        file_name = TRIM(path_name)//'/dissipation.plt'
+        OPEN(100,FILE=file_name,FORM='FORMATTED',POSITION='APPEND')
+        WRITE(100,*) 'VARIABLES="Y","Y+","dis","dis_new"'
+        DO j = 0,Ny
+            WRITE(100,*) Y(j), Y(j)/(del/Re_tau), dis(j), dis_new(j)
         END DO
         CLOSE(100)
 
