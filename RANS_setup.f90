@@ -11,7 +11,7 @@
         SUBROUTINE SETUP
 
             USE RANS_module,                                                    &
-                ONLY : Ny, del, dy, Re_tau, nu,                                 &
+                ONLY : Ny, del, dy, Re_tau, nu, u_tau,                          &
                        Cm, Ce1, Ce2, Sk, Se, alpha, beta, itmax
 
             USE RANS_module,                                                    &
@@ -20,38 +20,39 @@
             IMPLICIT NONE
             INTEGER :: i,j
 
-            !--------------------------------!
-            !     Constants for simulation
-            !--------------------------------!
+            !-----------------------------------------------------------!
+            !                 Constants for simulation
+            !-----------------------------------------------------------!
             itmax = 10
-            Ny  = 100         ! the number of grid cells
-            del = 1          ! the channel-half height
-            dy  = (2*del)/NY  ! grid size
+            Ny  = 100              ! the number of grid cells
+            del = 1                ! the channel-half height
+            dy  = (2*del)/Ny       ! grid size
 
-            Re_tau = 180      ! Reynolds number based on the friction velocity
-            nu     = 3.5000e-4 ! Kinematic viscosity of reference data
+            Re_tau = 180           ! Reynolds number based on friction velocity
+            nu     = 3.5000e-4     ! Kinematic viscosity of reference data
+            u_tau  = Re_tau*nu/del ! Friction velocity
 
-            !------------------------------!
-            !    Constants for k-e model
-            !------------------------------!
+            !-----------------------------------------------------------!
+            !                   Constants for k-e model
+            !-----------------------------------------------------------!
             Cm  = 0.09
             Ce1 = 1.44
             Ce2 = 1.92
             Sk  = 1.0
             Se  = 1.3
 
-            !------------------------------!
-            !      Relaxation factors
-            !------------------------------!
+            !-----------------------------------------------------------!
+            !                     Relaxation factors
+            !-----------------------------------------------------------!
             alpha = 0.7
             beta  = 0.1
 
             ALLOCATE( U(0:NY),U_new(0:Ny),U_exac(0:Ny),Y(0:Ny),prod(0:Ny) )
             ALLOCATE( k(0:Ny),k_new(0:Ny),dis(0:Ny),dis_new(0:Ny),nu_T(0:Ny) )
 
-            !--------------------------------!
-            !       Initial Conditions
-            !--------------------------------!
+            !-----------------------------------------------------------!
+            !                      Initial Conditions
+            !-----------------------------------------------------------!
             DO j = 0,Ny
               Y(j)        = j*dy
               U(j)        = 0
