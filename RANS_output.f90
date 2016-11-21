@@ -56,7 +56,6 @@
             WRITE(100,"(4F15.9)") Y(j), Y(j)/(del/Re_tau),                      &
                                   dis_new(j), dis_new(j)/(nu*(u_tau**2/nu)**2)
         END DO
-        print*,(nu*(u_tau/nu)**2)
         CLOSE(100)
 
         DEALLOCATE(U,U_new,U_exac,Y,k,k_new,dis,dis_new,nu_T)

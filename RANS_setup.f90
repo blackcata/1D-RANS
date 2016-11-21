@@ -23,11 +23,11 @@
             !-----------------------------------------------------------!
             !                 Constants for simulation
             !-----------------------------------------------------------!
-            itmax = 0         ! maximum interation number
+            itmax = 10000000       ! maximum interation number
             resi = 0               ! criteria for convergence
-            tol = 1e-16            ! tolerance for convergence
+            tol = 1e-12            ! tolerance for convergence
 
-            Ny  = 210              ! the number of grid cells
+            Ny  = 360              ! the number of grid cells
             del = 1                ! the channel-half height
             dy  = (2*del)/Ny       ! grid size
 
@@ -47,8 +47,8 @@
             !-----------------------------------------------------------!
             !                     Relaxation factors
             !-----------------------------------------------------------!
-            alpha = 0.1
-            beta  = 0.7
+            alpha = 0.3
+            beta  = 0.4
 
             ALLOCATE( U(0:NY),U_new(0:Ny),U_exac(0:Ny),Y(0:Ny),prod(0:Ny) )
             ALLOCATE( k(0:Ny),k_new(0:Ny),dis(0:Ny),dis_new(0:Ny),nu_T(0:Ny) )
@@ -59,8 +59,8 @@
             DO j = 0,Ny
               Y(j)        = j*dy
               U(j)        = 0
-              k(j)        = 0.0100
-              dis(j)      = 0.0015
+              k(j)        = 0.0800
+              dis(j)      = 0.0100
               nu_T(j)     = 0
               prod(j)     = 0
 
