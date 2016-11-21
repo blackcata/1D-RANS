@@ -11,14 +11,14 @@
         SUBROUTINE GETU
 
             USE RANS_module,                                                    &
-              ONLY : Ny, dy, nu, del, Re_tau, u_tau ,alpha, beta
+              ONLY : Ny, dy, nu, del, Re_tau, u_tau ,alpha, beta, resi
 
             USE RANS_module,                                                    &
               ONLY : U, U_new, nu_T
 
             IMPLICIT NONE
             INTEGER :: i,j
-            REAL(KIND=8) :: C0, resi
+            REAL(KIND=8) :: C0
 
             REAL(KIND=8),DIMENSION(:),ALLOCATABLE :: a,b,c,r,x
 
@@ -32,11 +32,12 @@
             !-----------------------------------------------------------!
             DO j = 1,Ny-1
               a(j) =   2*nu + nu_T(j-1) + nu_T(j)
-              b(j) = -(4*nu + nu_T(j+1) + 2*nu_T(j) + nu_T(j-1))/alpha
+              b(j) = -(4*nu + nu_T(j+1) + 2*nu_T(j) + nu_T(j-1))
               c(j) =   2*nu + nu_T(j+1) + nu_T(j)
-              r(j) = -2*dy**2*C0 + b(j) * U(j) * (1-alpha) /alpha
+              r(j) = -2*dy**2*C0
             END DO
-
+            r(0:Ny) = r(0:Ny) + b(0:Ny) * U(0:Ny)*(1-alpha)/alpha
+            b(0:Ny) = b(0:Ny) / alpha
             x(0:Ny) = U(0:Ny)
 
             !-----------------------------------------------------------!
@@ -61,7 +62,9 @@
             DO j = 0,Ny
               resi = resi + (U_new(j) - U(j))**2
             END DO
-            print*,sqrt(resi)
+            resi = sqrt(resi)/Ny
+            print*,resi
+
             U(0:Ny) = U_new(0:Ny)
             DEALLOCATE(a,b,c,r,x)
 

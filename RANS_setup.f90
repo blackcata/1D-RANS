@@ -12,7 +12,7 @@
 
             USE RANS_module,                                                    &
                 ONLY : Ny, del, dy, Re_tau, nu, u_tau,                          &
-                       Cm, Ce1, Ce2, Sk, Se, alpha, beta, itmax
+                       Cm, Ce1, Ce2, Sk, Se, alpha, beta, itmax, resi, tol
 
             USE RANS_module,                                                    &
                 ONLY : U, U_exac, U_new, Y, k, k_new, dis, dis_new, nu_T, prod
@@ -23,8 +23,11 @@
             !-----------------------------------------------------------!
             !                 Constants for simulation
             !-----------------------------------------------------------!
-            itmax = 30             ! maximum interation number 
-            Ny  = 100              ! the number of grid cells
+            itmax = 500000         ! maximum interation number
+            resi = 0               ! criteria for convergence
+            tol = 1e-16            ! tolerance for convergence
+
+            Ny  = 200              ! the number of grid cells
             del = 1                ! the channel-half height
             dy  = (2*del)/Ny       ! grid size
 
@@ -45,7 +48,7 @@
             !                     Relaxation factors
             !-----------------------------------------------------------!
             alpha = 0.7
-            beta  = 0.1
+            beta  = 0.7
 
             ALLOCATE( U(0:NY),U_new(0:Ny),U_exac(0:Ny),Y(0:Ny),prod(0:Ny) )
             ALLOCATE( k(0:Ny),k_new(0:Ny),dis(0:Ny),dis_new(0:Ny),nu_T(0:Ny) )

@@ -28,12 +28,12 @@
             !-----------------------------------------------------------!
             DO j = 1,Ny-1
               a(j) =   nu_T(j-1) + nu_T(j)
-              b(j) = -(nu_T(j+1) + 2*nu_T(j) + nu_T(j-1))/alpha
+              b(j) = -(nu_T(j+1) + 2*nu_T(j) + nu_T(j-1))
               c(j) =   nu_T(j+1) + nu_T(j)
-              r(j) = 2*dy**2*Sk* ( dis(j) - prod(j) )                           &
-                      + b(j) * k(j) * (1-alpha) /alpha
+              r(j) = 2*dy**2*Sk* ( dis(j) - prod(j) )
             END DO
-
+            r(0:Ny) = r(0:Ny) + b(0:Ny) * k(0:Ny)*(1-alpha)/alpha
+            b(0:Ny) = b(0:Ny) / alpha
             x(0:Ny) = k(0:Ny)
 
             !-----------------------------------------------------------!

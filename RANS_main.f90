@@ -13,7 +13,7 @@
         PROGRAM RANS_main
 
           USE RANS_module,                                                      &
-              ONLY : path_name, itmax
+              ONLY : path_name, itmax, resi, tol
 
           IMPLICIT NONE
           INTEGER :: it
@@ -40,7 +40,7 @@
             CALL GETPROD
             CALL GETK
             CALL GETDIS
-
+            IF (resi < tol) EXIT
           END DO
 
           !---------------------------------------------!
