@@ -63,7 +63,6 @@
               resi = resi + (U_new(j) - U(j))**2
             END DO
             resi = sqrt(resi)/Ny
-            print*,resi
 
             U(0:Ny) = U_new(0:Ny)
             DEALLOCATE(a,b,c,r,x)
