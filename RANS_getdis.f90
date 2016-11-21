@@ -43,8 +43,8 @@
             b(Ny) = 1
             a(Ny) = 0
             c(0)  = 0
-            r(0)  = u_tau/(K0*nu)*dy**3
-            r(Ny) = u_tau/(K0*nu)*dy**3
+            r(0)  = u_tau**2*nu/(K0*dy)
+            r(Ny) = u_tau**2*nu/(K0*dy)
 
             r(0:Ny) = r(0:Ny) + b(0:Ny) * dis(0:Ny)*(1-alpha)/alpha
             b(0:Ny) = b(0:Ny) / alpha

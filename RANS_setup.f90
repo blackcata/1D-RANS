@@ -11,7 +11,7 @@
         SUBROUTINE SETUP
 
             USE RANS_module,                                                    &
-                ONLY : Ny, del, dy, Re_tau, nu, u_tau, K0,                      &
+                ONLY : Ny, del, dy, Re_tau, nu, u_tau, K0, band,                &
                        Cm, Ce1, Ce2, Sk, Se, alpha, beta, itmax, resi, tol
 
             USE RANS_module,                                                    &
@@ -26,10 +26,11 @@
             itmax = 10000000       ! maximum interation number
             resi = 0               ! criteria for convergence
             tol = 1e-12            ! tolerance for convergence
+            band = 20              ! starting point
 
-            Ny  = 180 - 2          ! the number of grid cells
+            Ny  = 180 - band       ! the number of grid cells
             del = 1                ! the channel-half height
-            dy  = (2*del)/(Ny+2)   ! grid size
+            dy  = (2*del)/(Ny+band)   ! grid size
 
             Re_tau = 180           ! Reynolds number based on friction velocity
             nu     = 3.5000e-4     ! Kinematic viscosity of reference data

@@ -14,7 +14,7 @@
             ONLY : file_name, path_name
 
         USE RANS_module,                                                        &
-            ONLY : Ny,del,Re_tau,u_tau,nu
+            ONLY : Ny,del,Re_tau,u_tau,nu,band
 
         USE RANS_module,                                                        &
             ONLY : Y, U, U_new, U_exac, k, k_new, dis, dis_new, nu_T
@@ -28,7 +28,7 @@
         file_name = TRIM(path_name)//'/U.plt'
         OPEN(100,FILE=file_name,FORM='FORMATTED',POSITION='APPEND')
         WRITE(100,*) 'VARIABLES="Y","Y+","U","U+","U_exac"'
-        DO j = 0,Ny
+        DO j = 0+band,Ny-band
             WRITE(100,"(5F15.9)") Y(j),Y(j)/(del/Re_tau),                       &
                                   U_new(j), U_new(j)/u_tau, U_exac(j)
         END DO
@@ -40,7 +40,7 @@
         file_name = TRIM(path_name)//'/k.plt'
         OPEN(100,FILE=file_name,FORM='FORMATTED',POSITION='APPEND')
         WRITE(100,*) 'VARIABLES="Y","Y+","k","k+"'
-        DO j = 0,Ny
+        DO j = 0+band,Ny-band
             WRITE(100,"(4F15.9)") Y(j), Y(j)/(del/Re_tau),                      &
                                   k_new(j), k_new(j)/(u_tau**2)
         END DO
@@ -52,7 +52,7 @@
         file_name = TRIM(path_name)//'/dissipation.plt'
         OPEN(100,FILE=file_name,FORM='FORMATTED',POSITION='APPEND')
         WRITE(100,*) 'VARIABLES="Y","Y+","dis","dis+"'
-        DO j = 0,Ny
+        DO j = 0+band,Ny-band
             WRITE(100,"(4F15.9)") Y(j), Y(j)/(del/Re_tau),                      &
                                   dis_new(j), dis_new(j)/(nu*(u_tau**2/nu)**2)
         END DO

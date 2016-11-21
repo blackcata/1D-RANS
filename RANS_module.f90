@@ -10,8 +10,8 @@
 
         MODULE RANS_module
 
-            INTEGER :: Ny, itmax
-            REAL(KIND=8) :: del, dy, Re_tau, nu, u_tau, K0, resi, tol 
+            INTEGER :: Ny, itmax, band
+            REAL(KIND=8) :: del, dy, Re_tau, nu, u_tau, K0, resi, tol
             REAL(KIND=8) :: Cm, Ce1, Ce2, Sk, Se, alpha, beta
             CHARACTER(LEN=65) :: file_name, path_name
 
