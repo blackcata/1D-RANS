@@ -32,7 +32,7 @@
               c(j) =   nu_T(j+1) + nu_T(j)
               r(j) = 2*dy**2*Se* ( Ce2*dis(j)**2/k_new(j)                       &
                                   - Ce1*nu_T(j)*dis(j)/k_new(j)*prod(j) )       &
-                    + a(j) * dis(j) * (1-alpha) /alpha
+                    + b(j) * dis(j) * (1-alpha) /alpha
             END DO
 
             x(0:Ny) = dis(0:Ny)
@@ -46,6 +46,9 @@
             c(0)  = 0
             r(0)  = nu*k_new(1)/(dy**2)
             r(Ny) = nu*k_new(Ny-1)/(dy**2)
+
+            r(0)  = r(0) + b(0) * dis(0) * (1-alpha) /alpha
+            r(Ny) = r(Ny) + b(Ny) * dis(Ny) * (1-alpha) /alpha
 
             !-----------------------------------------------------------!
             !                       Calculate TDMA

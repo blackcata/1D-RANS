@@ -34,7 +34,7 @@
               a(j) =   2*nu + nu_T(j-1) + nu_T(j)
               b(j) = -(4*nu + nu_T(j+1) + 2*nu_T(j) + nu_T(j-1))/alpha
               c(j) =   2*nu + nu_T(j+1) + nu_T(j)
-              r(j) = -2*dy**2*C0 + a(j) * U(j) * (1-alpha) /alpha
+              r(j) = -2*dy**2*C0 + b(j) * U(j) * (1-alpha) /alpha
             END DO
 
             x(0:Ny) = U(0:Ny)
