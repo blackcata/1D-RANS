@@ -14,7 +14,7 @@
               ONLY : Ny, dy, nu, del, Re_tau, u_tau , K0, alpha, beta, resi
 
             USE RANS_module,                                                    &
-              ONLY : U, U_new, nu_T
+              ONLY : U, U_new, nu_T, Y, band
 
             IMPLICIT NONE
             INTEGER :: i,j
@@ -47,8 +47,8 @@
             b(Ny) = 1
             a(Ny) = 0
             c(0)  = 0
-            r(0)  = u_tau * (1/K0*LOG(dy*u_tau/nu) + B0)
-            r(Ny) = u_tau * (1/K0*LOG(dy*u_tau/nu) + B0)
+            r(0)  = u_tau * (1/K0*LOG(Y(band)*u_tau/nu) + B0)
+            r(Ny) = u_tau * (1/K0*LOG(Y(band)*u_tau/nu) + B0)
 
             r(0:Ny) = r(0:Ny) + b(0:Ny) * U(0:Ny)*(1-alpha)/alpha
             b(0:Ny) = b(0:Ny) / alpha
