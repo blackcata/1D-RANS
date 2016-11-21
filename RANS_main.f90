@@ -40,7 +40,7 @@
             CALL GETPROD
             CALL GETK
             CALL GETDIS
-            WRITE(*,*) 'Iteration(',it,') : ',resi
+            WRITE(*,"(A,I6,A,E14.7)")'Iteration(',it,') : ',resi
             IF (resi < tol) EXIT
           END DO
 
