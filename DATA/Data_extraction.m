@@ -67,15 +67,19 @@ for it = 2:length(uu)-1
     diss(it)= nu*(diss_u + diss_v + diss_w);
     dissp(it) = diss(it) /(nu *(u_tau^2/nu)^2);
 end
+diss(1) = nu*k(2)/dy^2
+diss(length(uu)) = diss(length(uu)-1);
+dissp(1) = diss(1) /(nu *(u_tau^2/nu)^2);
+dissp(length(uu)) = diss(length(uu)) /(nu *(u_tau^2/nu)^2);
 
-semilogx(Yp(1:95),dissp)
+semilogx(Yp,dissp)
 xlabel('y+')
 ylabel('diss')
 axis([1 max(Yp)+20 0 max(dissp)])
 
 %% Writing Y,Yp,U,k %%
 fileID = fopen('CHANNEL_0180_profile.plt','w');
-fprintf(fileID,'VARIABLES="Y","Y+","U","k","k+","diss","diss+" \n');
-fprintf(fileID,'%f %f %f %f \n',[Y' Yp' U' k' (k'*u_tau^2), diss', dissp']');
+fprintf(fileID,'VARIABLES="Y","Y+","U","U+","k","k+","diss","diss+" \n');
+fprintf(fileID,'%f %f %f %f %f %f %f %f \n',[Y' Yp' U'*u_tau U' k'*u_tau^2 k' diss' dissp']');
 fclose(fileID);
 
