@@ -11,14 +11,14 @@
         SUBROUTINE GETU
 
             USE RANS_module,                                                    &
-              ONLY : Ny, dy, nu, del, Re_tau, u_tau ,alpha, beta, resi
+              ONLY : Ny, dy, nu, del, Re_tau, u_tau , K0, alpha, beta, resi
 
             USE RANS_module,                                                    &
               ONLY : U, U_new, nu_T
 
             IMPLICIT NONE
             INTEGER :: i,j
-            REAL(KIND=8) :: C0
+            REAL(KIND=8) :: C0, B0
 
             REAL(KIND=8),DIMENSION(:),ALLOCATABLE :: a,b,c,r,x
 
@@ -26,6 +26,7 @@
 
             resi = 0
             C0   = u_tau**2 / del
+            B = 5.2
 
             !-----------------------------------------------------------!
             !                     Set TDMA constants
@@ -36,8 +37,7 @@
               c(j) =   2*nu + nu_T(j+1) + nu_T(j)
               r(j) = -2*dy**2*C0
             END DO
-            r(0:Ny) = r(0:Ny) + b(0:Ny) * U(0:Ny)*(1-alpha)/alpha
-            b(0:Ny) = b(0:Ny) / alpha
+
             x(0:Ny) = U(0:Ny)
 
             !-----------------------------------------------------------!
@@ -47,8 +47,11 @@
             b(Ny) = 1
             a(Ny) = 0
             c(0)  = 0
-            r(0)  = 0
-            r(Ny) = 0
+            r(0)  = u_tau * (1/K0*LOG(dy*u_tau/nu) + B0)
+            r(Ny) = u_tau * (1/K0*LOG(dy*u_tau/nu) + B0)
+
+            r(0:Ny) = r(0:Ny) + b(0:Ny) * U(0:Ny)*(1-alpha)/alpha
+            b(0:Ny) = b(0:Ny) / alpha
 
             !-----------------------------------------------------------!
             !                       Calculate TDMA

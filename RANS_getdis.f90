@@ -11,7 +11,7 @@
         SUBROUTINE GETDIS
 
             USE RANS_module,                                                    &
-              ONLY : Ny, dy, nu, Se, Ce1, Ce2, alpha, beta
+              ONLY : Ny, dy, nu, Se, Ce1, Ce2, K0, u_tau, alpha, beta
 
             USE RANS_module,                                                    &
               ONLY : k_new, dis, dis_new, U_new, nu_T, prod
@@ -43,8 +43,8 @@
             b(Ny) = 1
             a(Ny) = 0
             c(0)  = 0
-            r(0)  = nu*k_new(1)/(dy**2)
-            r(Ny) = nu*k_new(Ny-1)/(dy**2)
+            r(0)  = u_tau/(K0*nu)*dy**3
+            r(Ny) = u_tau/(K0*nu)*dy**3
 
             r(0:Ny) = r(0:Ny) + b(0:Ny) * dis(0:Ny)*(1-alpha)/alpha
             b(0:Ny) = b(0:Ny) / alpha

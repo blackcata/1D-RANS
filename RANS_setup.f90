@@ -11,7 +11,7 @@
         SUBROUTINE SETUP
 
             USE RANS_module,                                                    &
-                ONLY : Ny, del, dy, Re_tau, nu, u_tau,                          &
+                ONLY : Ny, del, dy, Re_tau, nu, u_tau, K0,                      &
                        Cm, Ce1, Ce2, Sk, Se, alpha, beta, itmax, resi, tol
 
             USE RANS_module,                                                    &
@@ -27,13 +27,14 @@
             resi = 0               ! criteria for convergence
             tol = 1e-12            ! tolerance for convergence
 
-            Ny  = 360              ! the number of grid cells
+            Ny  = 180 - 2          ! the number of grid cells
             del = 1                ! the channel-half height
-            dy  = (2*del)/Ny       ! grid size
+            dy  = (2*del)/(Ny+2)   ! grid size
 
             Re_tau = 180           ! Reynolds number based on friction velocity
             nu     = 3.5000e-4     ! Kinematic viscosity of reference data
             u_tau  = Re_tau*nu/del ! Friction velocity
+            K0     = 0.41          ! Von Karman constant
 
             !-----------------------------------------------------------!
             !                   Constants for k-e model
@@ -57,7 +58,7 @@
             !                      Initial Conditions
             !-----------------------------------------------------------!
             DO j = 0,Ny
-              Y(j)        = j*dy
+              Y(j)        = (j+1)*dy
               U(j)        = 0
               k(j)        = 0.0800
               dis(j)      = 0.0100
@@ -66,7 +67,7 @@
 
               k_new(j)    = 0
               U_new(j)    = 0
-              dis_new(j) = 0
+              dis_new(j)  = 0
               U_exac(j)   = -(nu/(2*del))*(Re_tau/del)**2 * Y(j) * (Y(j)-2*del)
             END DO
 
