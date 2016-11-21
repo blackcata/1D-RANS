@@ -13,7 +13,7 @@
         PROGRAM RANS_main
 
           USE RANS_module,                                                      &
-              ONLY : path_name, itmax, resi, tol
+              ONLY : path_name, itmax, resi, tol, dis_new, nu, u_tau
 
           IMPLICIT NONE
           INTEGER :: it
@@ -40,7 +40,8 @@
             CALL GETPROD
             CALL GETK
             CALL GETDIS
-            WRITE(*,"(A,I6,A,E14.7)")'Iteration(',it,') : ',resi
+            WRITE(*,"(A,I6,A,E14.7,2X,E14.7)")'Iteration(',it,') : '            &
+                   ,resi,dis_new(0)/(nu*(u_tau**2/nu)**2)
             IF (resi < tol) EXIT
           END DO
 
