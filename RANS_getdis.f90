@@ -43,8 +43,8 @@
             b(Ny) = 1
             a(Ny) = 0
             c(0)  = 0
-            r(0)  = nu*k_new(1)/(dy**2)
-            r(Ny) = nu*k_new(Ny-1)/(dy**2)
+            r(0)  = 2*nu*k_new(1)/(dy**2)
+            r(Ny) = 2*nu*k_new(Ny-1)/(dy**2)
 
             r(0:Ny) = r(0:Ny) + b(0:Ny) * dis(0:Ny)*(1-alpha)/alpha
             b(0:Ny) = b(0:Ny) / alpha
