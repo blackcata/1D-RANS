@@ -6,21 +6,24 @@ filename = 'CHANNEL_0180_'
 
 data1 = 'mean_prof'
 data2 = 'vel_fluc_prof'
+data3 = 'balance_budget'
 
-for k=1:30
-   
-    date = sprintf('%02i',k)
-    
-    fn1  = strcat(filename,data1,'.plt')
-    fn2  = strcat(filename,data2,'.plt')
+fn1  = strcat(filename,data1,'.plt')
+fn2  = strcat(filename,data2,'.plt')
+fn3  = strcat(filename,data3,'.plt')
 
-    data_p1 = fopen(fn1);
-    data_p2 = fopen(fn2);
-    
-    A = fscanf(data_p1,'%f %f %f',[6 inf]); 
-    B = fscanf(data_p2,'%f %f %f',[9 inf]); 
- 
-end
+data_p1 = fopen(fn1);
+data_p2 = fopen(fn2);
+data_p3 = fopen(fn3);
+
+A = fscanf(data_p1,'%f %f %f %f %f %f',[6 inf]); 
+B = fscanf(data_p2,'%f %f %f %f %f %f %f %f %f',[9 inf]); 
+C = fscanf(data_p3,'%f %f %f %f %f %f %f %f %f',[9 inf]); 
+
+fclose(data_p1)
+fclose(data_p2)
+fclose(data_p3)
+
 %% Data Transfer %%
 Y    = A(1,:);
 Yp   = A(2,:);
@@ -37,6 +40,8 @@ uw   = B(7,:);
 vw   = B(8,:);
 k    = B(9,:);
 
+prod = C(3,:);
+e    = C(8,:);
 
 %% Plotting %%
 semilogx(Yp,U,'ro')
@@ -44,7 +49,7 @@ xlabel('y+')
 ylabel('u+')
 axis([1 max(Yp)+20 0 max(U)+2])
 
-%% %%
+%% Constants %%
 
 Re_tau = 180
 nu = 3.5e-4
@@ -53,33 +58,10 @@ del = 1.0
 u_tau = Re_tau * nu /del
 
 k_max = max(k*u_tau*u_tau) 
-
-%% %%
-u_f = sqrt(uu) * u_tau
-v_f = sqrt(vv) * u_tau
-w_f = sqrt(ww) * u_tau
-
-for it = 2:length(uu)-1
-    dy = (Y(it+1) -Y(it-1))/2;
-    diss_u = (u_f(it+1) - u_f(it-1))/(2*dy);
-    diss_v = (v_f(it+1) - v_f(it-1))/(2*dy);
-    diss_w = (w_f(it+1) - w_f(it-1))/(2*dy);
-    diss(it)= nu*(diss_u + diss_v + diss_w);
-    dissp(it) = diss(it) /(nu *(u_tau^2/nu)^2);
-end
-diss(1) = nu*k(2)/dy^2
-diss(length(uu)) = diss(length(uu)-1);
-dissp(1) = diss(1) /(nu *(u_tau^2/nu)^2);
-dissp(length(uu)) = diss(length(uu)) /(nu *(u_tau^2/nu)^2);
-
-semilogx(Yp,dissp)
-xlabel('y+')
-ylabel('diss')
-axis([1 max(Yp)+20 0 max(dissp)])
+e_max = max(e)
 
 %% Writing Y,Yp,U,k %%
 fileID = fopen('CHANNEL_0180_profile.plt','w');
 fprintf(fileID,'VARIABLES="Y","Y+","U","U+","k","k+","diss","diss+" \n');
-fprintf(fileID,'%f %f %f %f %f %f %f %f \n',[Y' Yp' U'*u_tau U' k'*u_tau^2 k' diss' dissp']');
+fprintf(fileID,'%f %f %f %f %f %f %f %f \n',[Y' Yp' U'*u_tau U' k'*u_tau^2 k' e'*u_tau^2 e']');
 fclose(fileID);
-
