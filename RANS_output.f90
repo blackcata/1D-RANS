@@ -17,7 +17,7 @@
             ONLY : Ny,del,Re_tau,u_tau,nu
 
         USE RANS_module,                                                        &
-            ONLY : Y, U, U_new, U_exac, k, k_new, dis, dis_new, nu_T
+            ONLY : Y, U, U_new, U_exac, k, k_new, dis, dis_new, nu_T, fm
 
         IMPLICIT NONE
         INTEGER :: i, j
@@ -58,6 +58,6 @@
         END DO
         CLOSE(100)
 
-        DEALLOCATE(U,U_new,U_exac,Y,k,k_new,dis,dis_new,nu_T)
+        DEALLOCATE(U,U_new,U_exac,Y,k,k_new,dis,dis_new,nu_T,fm)
 
     END SUBROUTINE OUTPUT
