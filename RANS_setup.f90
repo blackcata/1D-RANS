@@ -26,7 +26,7 @@
             itmax = 10000000       ! maximum interation number
             resi = 0               ! criteria for convergence
             tol = 1e-12            ! tolerance for convergence
-            band = 10              ! starting point
+            band = 15              ! starting point
 
             Ny  = 180 - band       ! the number of grid cells
             del = 1                ! the channel-half height
@@ -59,7 +59,7 @@
             !                      Initial Conditions
             !-----------------------------------------------------------!
             DO j = 0,Ny
-              Y(j)        = (j+1)*dy
+              Y(j)        = j*dy
               U(j)        = 0
               k(j)        = 0.0800
               dis(j)      = 0.0100

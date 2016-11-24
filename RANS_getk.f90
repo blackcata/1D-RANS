@@ -42,8 +42,8 @@
             b(Ny) = 1
             a(Ny) = 0
             c(0)  = 0
-            r(0)  = u_tau**2/Cm**0.5
-            r(Ny) = u_tau**2/Cm**0.5
+            r(0)  = u_tau**2/sqrt(Cm)
+            r(Ny) = u_tau**2/sqrt(Cm)
 
             r(0:Ny) = r(0:Ny) + b(0:Ny) * k(0:Ny)*(1-alpha)/alpha
             b(0:Ny) = b(0:Ny) / alpha

@@ -30,7 +30,7 @@
         ! WRITE(100,*) 'VARIABLES="Y","Y+","U","U+","U_exac"'
         DO j = 0+band,Ny-band
             WRITE(100,"(5F15.9)") Y(j),Y(j)/(del/Re_tau),                       &
-                                  U_new(j), U_new(j)/u_tau, U_exac(j)
+                                  U_new(j-band), U_new(j-band)/u_tau, U_exac(j)
         END DO
         CLOSE(100)
 
@@ -42,7 +42,7 @@
         ! WRITE(100,*) 'VARIABLES="Y","Y+","k","k+"'
         DO j = 0+band,Ny-band
             WRITE(100,"(4F15.9)") Y(j), Y(j)/(del/Re_tau),                      &
-                                  k_new(j), k_new(j)/(u_tau**2)
+                                  k_new(j-band), k_new(j-band)/(u_tau**2)
         END DO
         CLOSE(100)
 
@@ -54,7 +54,7 @@
         ! WRITE(100,*) 'VARIABLES="Y","Y+","dis","dis+"'
         DO j = 0+band,Ny-band
             WRITE(100,"(4F15.9)") Y(j), Y(j)/(del/Re_tau),                      &
-                                  dis_new(j), dis_new(j)/(nu*(u_tau**2/nu)**2)
+                                  dis_new(j-band), dis_new(j-band)/(nu*(u_tau**2/nu)**2)
         END DO
         CLOSE(100)
 

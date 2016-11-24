@@ -36,7 +36,7 @@ k   = C(4,:);
 dis = D(4,:);
 
 Ny = size(B);
-Ny = Ny(2)-1;
+Ny = Ny(2);
 
 Y_exac   = A(1,:);
 Yp_exac  = A(2,:);
