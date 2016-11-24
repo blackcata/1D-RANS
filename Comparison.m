@@ -59,5 +59,3 @@ figure
 plot(Yp(1:Ny/2),dis(1:Ny/2))
 hold on 
 plot(Yp_exac,dis_exac,'o')
-
-

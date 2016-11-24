@@ -54,7 +54,7 @@
         ! WRITE(100,*) 'VARIABLES="Y","Y+","dis","dis+"'
         DO j = 0,Ny
             WRITE(100,"(4F15.9)") Y(j), Y(j)/(del/Re_tau),                      &
-                                  dis_new(j), dis_new(j)/(u_tau**2)
+                                  dis_new(j), dis_new(j)/(nu*(u_tau**2/nu)**2)
         END DO
         CLOSE(100)
 
