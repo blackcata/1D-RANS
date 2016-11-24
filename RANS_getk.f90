@@ -27,9 +27,9 @@
             !                     Set TDMA constants
             !-----------------------------------------------------------!
             DO j = 1,Ny-1
-              a(j) =   2*nu + nu_T(j-1) + nu_T(j)
-              b(j) = -(4*nu + nu_T(j+1) + 2*nu_T(j) + nu_T(j-1))
-              c(j) =   2*nu + nu_T(j+1) + nu_T(j)
+              a(j) =   Sk*2*nu + nu_T(j-1) + nu_T(j)
+              b(j) = -(Sk*4*nu + nu_T(j+1) + 2*nu_T(j) + nu_T(j-1))
+              c(j) =   Sk*2*nu + nu_T(j+1) + nu_T(j)
               r(j) = 2*dy**2*Sk* ( dis(j) - prod(j) )
             END DO
             r(0:Ny) = r(0:Ny) + b(0:Ny) * k(0:Ny)*(1-alpha)/alpha
