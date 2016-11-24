@@ -24,7 +24,7 @@
             !-----------------------------------------------------------!
             !                 Constants for simulation
             !-----------------------------------------------------------!
-            itmax = 10000000       ! maximum interation number
+            itmax = 30000000       ! maximum interation number
             resi = 0               ! criteria for convergence
             tol = 1e-12            ! tolerance for convergence
 
@@ -48,7 +48,7 @@
             !-----------------------------------------------------------!
             !                     Relaxation factors
             !-----------------------------------------------------------!
-            alpha = 0.1
+            alpha = 0.3
             beta  = 0.4
 
             ALLOCATE( U(0:NY),U_new(0:Ny),U_exac(0:Ny),Y(0:Ny),prod(0:Ny) )
