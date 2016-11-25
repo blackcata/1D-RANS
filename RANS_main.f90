@@ -37,6 +37,7 @@
           !---------------------------------------------!
           CALL CPU_TIME(time_sta)
           DO it = 0, itmax
+            CALL GETFM
             CALL GETNUT
             CALL GETU
             CALL GETPROD

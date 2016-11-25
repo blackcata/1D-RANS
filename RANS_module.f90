@@ -10,14 +10,14 @@
 
         MODULE RANS_module
 
-            INTEGER :: Ny, itmax
+            INTEGER :: Ny, itmax, mode
             REAL(KIND=8) :: del, dy, Re_tau, nu, u_tau, resi, tol
             REAL(KIND=8) :: Cm, Ce1, Ce2, Sk, Se, alpha, beta
             CHARACTER(LEN=65) :: file_name, path_name
 
             REAL(KIND=8),DIMENSION(:),ALLOCATABLE :: U, U_exac, Y, k, dis, nu_T,&
                                                      U_new, k_new, dis_new, prod&
-                                                    ,fm
+                                                    ,fm, fw
 
 
         END MODULE

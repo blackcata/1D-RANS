@@ -4,7 +4,7 @@ FCFLAGS=-O2
 TARGET= 1D_RANS
 OBJECT= RANS_module.o RANS_main.o RANS_setup.o RANS_poiseuille.o \
 		RANS_getnut.o RANS_getu.o RANS_getk.o RANS_getdis.o\
-		RANS_getprod.o RANS_output.o TDMA_Solver.o
+		RANS_getprod.o RANS_getfm.o RANS_output.o TDMA_Solver.o
 
 all : $(TARGET)
 $(TARGET) : $(OBJECT)
