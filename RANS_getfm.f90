@@ -65,6 +65,9 @@
                END IF
 
                SELECT CASE (mode)
+                  CASE(0) ! No wall model
+                    fm(j) = 1
+                    
                   CASE(1) ! van Driest (1954)
                     fm(j) = ( 1 - exp(-Y_tmp(j)/(nu/u_tau)/40))**2
 

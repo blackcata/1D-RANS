@@ -40,7 +40,8 @@
             !-----------------------------------------------------------!
             !             Damping function mode for k-e model
             !
-            !    mode = 1 : Van Driest (1954)
+            !    mode = 0 : No damping function
+            !         = 1 : Van Driest (1954)
             !         = 2 : Launder and Sharma (1974)
             !         = 3 : Lam and Bremhorst (1981)
             !         = 4 : Park et al (1997)
