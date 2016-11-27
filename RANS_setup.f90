@@ -25,7 +25,7 @@
             !-----------------------------------------------------------!
             !                 Constants for simulation
             !-----------------------------------------------------------!
-            itmax = 50000000       ! maximum interation number
+            itmax = 0000000       ! maximum interation number
             resi = 0.              ! criteria for convergence
             tol = 1e-10            ! tolerance for convergence
 
@@ -46,7 +46,7 @@
             !         = 3 : Lam and Bremhorst (1981)
             !         = 4 : Park et al (1997)
             !-----------------------------------------------------------!
-            mode = 1
+            mode = 0
 
             !-----------------------------------------------------------!
             !                   Constants for k-e model

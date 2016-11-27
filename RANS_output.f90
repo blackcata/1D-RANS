@@ -30,7 +30,7 @@
         ! WRITE(100,*) 'VARIABLES="Y","Y+","U","U+","U_exac"'
         DO j = 0,Ny
             WRITE(100,"(5F15.9)") Y(j),Y(j)/(del/Re_tau),                       &
-                                  U(j), U(j)/u_tau, U_exac(j)
+                                  U_new(j), U_new(j)/u_tau, U_exac(j)
         END DO
         CLOSE(100)
 

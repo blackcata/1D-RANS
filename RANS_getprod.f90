@@ -27,6 +27,6 @@
             !                     Boundary conditions
             !-----------------------------------------------------------!
             prod(0)  = nu_T(0)  * (u_tau**2/nu)**2.
-            prod(Ny) = nu_T(Ny) * (u_tau**2/nu)**2.
+            prod(Ny) = prod(Ny-1)
 
         END SUBROUTINE GETPROD
