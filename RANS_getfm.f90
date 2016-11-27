@@ -67,12 +67,12 @@
                SELECT CASE (mode)
                   CASE(0) ! No wall model
                     fm(j) = 1
-                    
+
                   CASE(1) ! van Driest (1954)
-                    fm(j) = ( 1 - exp(-Y_tmp(j)/(nu/u_tau)/40))**2
+                    fm(j) = ( 1 - exp(-Y_tmp(j)/(nu/u_tau)/A0))**2
 
                   CASE(2) ! Launder and Sharma (1974)
-                    Rt(j)    = k(j)**2 /(nu * dis(j))
+                    Rt(j) = k(j)**2 /(nu * dis(j))
                     fm(j) = exp( -3.4/(1 + Rt(j)/50)**2 )
 
                   CASE(4) ! Park et al (1997)
