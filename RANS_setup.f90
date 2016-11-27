@@ -25,7 +25,7 @@
             !-----------------------------------------------------------!
             !                 Constants for simulation
             !-----------------------------------------------------------!
-            itmax = 30000000      ! maximum interation number
+            itmax = 30000000       ! maximum interation number
             resi = 0               ! criteria for convergence
             tol = 1e-12            ! tolerance for convergence
 
