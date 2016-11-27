@@ -31,7 +31,7 @@
 
             Ny  = 180              ! the number of grid cells
             del = 1.               ! the channel-half height
-            dy  = (2*del)/Ny       ! grid size
+            dy  = del/Ny       ! grid size
 
             Re_tau = 180.          ! Reynolds number based on friction velocity
             nu     = 3.5000e-4     ! Kinematic viscosity of reference data
