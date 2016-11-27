@@ -12,7 +12,7 @@
 
             USE RANS_module,                                                    &
                 ONLY : Ny, del, dy, Re_tau, nu, u_tau,                          &
-                       A0, Cd, Cm, Cp, Ce, Ce1, Ce2, Sk, Se, alpha, beta,       &
+                       A0, A1, Cd, Cm, Cp, Ce, Ce1, Ce2, Sk, Se, alpha, beta,   &
                        itmax, resi, tol, mode
 
             USE RANS_module,                                                    &
@@ -46,12 +46,13 @@
             !         = 3 : Lam and Bremhorst (1981)
             !         = 4 : Park et al (1997)
             !-----------------------------------------------------------!
-            mode = 4
+            mode = 1
 
             !-----------------------------------------------------------!
             !                   Constants for k-e model
             !-----------------------------------------------------------!
-            A0  = 26
+            A0  = 42
+            A1  = 25
             Cd  = 20
             Cp  = 0.2
             Ce  = 70

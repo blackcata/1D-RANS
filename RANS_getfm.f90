@@ -12,7 +12,7 @@
 
             USE RANS_module,                                                    &
               ONLY : Ny, Cm, k, dis, nu_T, fm, prod, nu, u_tau, Y, del, mode,   &
-                     dy, fw, A0, Cd, Cp, Ce
+                     dy, fw, A0, A1, Cd, Cp, Ce
 
             IMPLICIT NONE
             INTEGER :: i,j
@@ -71,7 +71,7 @@
                   fm(0:Ny) = 1
 
                 CASE(1) ! van Driest (1954)
-                  fm(0:Ny) = ( 1 - exp(-Y_tmp(0:Ny)/(nu/u_tau)/A0))**2
+                  fm(0:Ny) = ( 1 - exp(-Y_tmp(0:Ny)/(nu/u_tau)/A1))**2
 
                 CASE(2) ! Launder and Sharma (1974)
                   Rt(0:Ny) = k(0:Ny)**2 /(nu * dis(0:Ny))
