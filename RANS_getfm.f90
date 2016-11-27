@@ -12,7 +12,7 @@
 
             USE RANS_module,                                                    &
               ONLY : Ny, Cm, k, dis, nu_T, fm, prod, Rt, nu, u_tau, Y, del, mode&
-                     ,dy, fw, A0, A1, Cd, Cp, Ce 
+                     ,dy, fw, A1, A4, Cd, Cp, Ce
 
             IMPLICIT NONE
             INTEGER :: j
@@ -28,7 +28,7 @@
               DO j = 1,Ny
                 Rt(j) = k(j)**2. /(nu * dis(j))
                 L     = Cp*sqrt(k(j)**3./dis(j)**2. + Ce**2.*(nu**3./dis(j))**(1./4.))
-                C1    = Rt(j)**1.5/(A0*L)**2.
+                C1    = Rt(j)**1.5/(A4*L)**2.
 
                 a(j)  =   1.
                 b(j)  = -(2. + C1*dy**2.)

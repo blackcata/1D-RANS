@@ -12,7 +12,7 @@
 
             USE RANS_module,                                                    &
                 ONLY : Ny, del, dy, Re_tau, nu, u_tau,                          &
-                       A0, A1, Cd, Cm, Cp, Ct, Ce, Ce1, Ce2, Sk, Se, alpha, beta&
+                       A1, A4, Cd, Cm, Cp, Ct, Ce, Ce1, Ce2, Sk, Se, alpha, beta&
                        ,itmax, resi, tol, mode
 
             USE RANS_module,                                                    &
@@ -51,8 +51,9 @@
             !-----------------------------------------------------------!
             !                   Constants for k-e model
             !-----------------------------------------------------------!
-            A0  = 10
+
             A1  = 60.
+            A4  = 10.
             Cd  = 20.
             Cp  = 0.2
             Ce  = 70.
