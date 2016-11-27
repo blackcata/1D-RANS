@@ -41,10 +41,10 @@
             CALL GETNUT
             CALL GETU
             CALL GETPROD
-            ! CALL GETK
-            ! CALL GETDIS
+            CALL GETK
+            CALL GETDIS
             WRITE(*,"(A,I8.7,A,E14.7,2X,F10.7,2X,E14.7)")'Iteration(',it,') : '            &
-                   ,resi,U(Ny/2)/u_tau,dis_new(0)/(nu*(u_tau**2/nu)**2)
+                   ,resi,U(Ny)/u_tau,dis_new(0)/(nu*(u_tau**2/nu)**2)
             IF (resi < tol) EXIT
           END DO
           CALL CPU_TIME(time_end)

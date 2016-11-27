@@ -25,13 +25,13 @@
             !-----------------------------------------------------------!
             !                 Constants for simulation
             !-----------------------------------------------------------!
-            itmax = 0000000       ! maximum interation number
+            itmax = 50000000       ! maximum interation number
             resi = 0.              ! criteria for convergence
             tol = 1e-10            ! tolerance for convergence
 
             Ny  = 180              ! the number of grid cells
             del = 1.               ! the channel-half height
-            dy  = del/Ny       ! grid size
+            dy  = del/Ny           ! grid size
 
             Re_tau = 180.          ! Reynolds number based on friction velocity
             nu     = 3.5000e-4     ! Kinematic viscosity of reference data
@@ -46,13 +46,13 @@
             !         = 3 : Lam and Bremhorst (1981)
             !         = 4 : Park et al (1997)
             !-----------------------------------------------------------!
-            mode = 0
+            mode = 1
 
             !-----------------------------------------------------------!
             !                   Constants for k-e model
             !-----------------------------------------------------------!
             A0  = 42.
-            A1  = 25.
+            A1  = 60.
             Cd  = 20.
             Cp  = 0.2
             Ce  = 70.
@@ -66,8 +66,8 @@
             !-----------------------------------------------------------!
             !                     Relaxation factors
             !-----------------------------------------------------------!
-            alpha = 0.1
-            beta  = 0.2
+            alpha = 0.2
+            beta  = 0.3
 
             ALLOCATE( U(0:NY),U_new(0:Ny),U_exac(0:Ny),Y(0:Ny),prod(0:Ny) )
             ALLOCATE( k(0:Ny),k_new(0:Ny),dis(0:Ny),dis_new(0:Ny),nu_T(0:Ny) )

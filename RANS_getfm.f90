@@ -17,9 +17,9 @@
             IMPLICIT NONE
             INTEGER :: j
             REAL(KIND=8) :: L, fm1, fm2, C1
-            REAL(KIND=8),DIMENSION(:),ALLOCATABLE :: Rt,Y_tmp,a,b,c,r,x
+            REAL(KIND=8),DIMENSION(:),ALLOCATABLE :: Rt,a,b,c,r,x
 
-            ALLOCATE( Y_tmp(0:Ny), Rt(0:Ny))
+            ALLOCATE( Rt(0:Ny))
             ALLOCATE( a(0:Ny), b(0:Ny), c(0:Ny), r(0:Ny), x(0:Ny) )
 
             IF (mode == 4) THEN
@@ -43,7 +43,7 @@
               !-----------------------------------------------------------!
               b(0)  = 1.
               b(Ny) = 1.
-              a(Ny) = 0.
+              a(Ny) = -1.
               c(0)  = 0.
               r(0)  = 0.
               r(Ny) = 0.
@@ -58,20 +58,12 @@
             !-----------------------------------------------------------!
             !                  Damping funnction setting
             !-----------------------------------------------------------!
-            DO j = 0,Ny
-               IF (j<Ny/2) THEN
-                  Y_tmp(j) = Y(j)
-               ELSE
-                  Y_tmp(j) = 2.*del - Y(j)
-               END IF
-            END DO
-
              SELECT CASE (mode)
                 CASE(0) ! No wall model
                   fm(0:Ny) = 1.
 
                 CASE(1) ! van Driest (1954)
-                  fm(0:Ny) = ( 1. - exp(-Y_tmp(0:Ny)/(nu/u_tau)/A1))**2.
+                  fm(0:Ny) = ( 1. - exp(-Y(0:Ny)/(nu/u_tau)/A1))**2.
 
                 CASE(2) ! Launder and Sharma (1974)
                   Rt(0:Ny) = k(0:Ny)**2. /(nu * dis(0:Ny))
@@ -90,7 +82,5 @@
                   fm(0)  = 0.
                   fm(Ny) = 0.
              END SELECT
-
-            DEALLOCATE(Y_tmp)
 
         END SUBROUTINE GETFM
