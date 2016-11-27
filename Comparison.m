@@ -46,16 +46,17 @@ dis_exac = A(8,:);
 
 %% Plotting %%
 figure
+subplot(3,1,1)
 semilogx(Yp(1:Ny/2),U(1:Ny/2))
 hold on 
 semilogx(Yp_exac,U_exac,'o')
 
-figure
+subplot(3,1,2)
 plot(Yp(1:Ny/2),k(1:Ny/2))
 hold on 
 plot(Yp_exac,k_exac,'o')
 
-figure
+subplot(3,1,3)
 plot(Yp(1:Ny/2),dis(1:Ny/2))
 hold on 
 plot(Yp_exac,dis_exac,'o')

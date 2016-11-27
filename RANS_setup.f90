@@ -12,7 +12,7 @@
 
             USE RANS_module,                                                    &
                 ONLY : Ny, del, dy, Re_tau, nu, u_tau,                          &
-                       A0, Cd, Cm, Ce1, Ce2, Sk, Se, alpha, beta,                   &
+                       A0, Cd, Cm, Cp, Ce, Ce1, Ce2, Sk, Se, alpha, beta,       &
                        itmax, resi, tol, mode
 
             USE RANS_module,                                                    &
@@ -25,7 +25,7 @@
             !-----------------------------------------------------------!
             !                 Constants for simulation
             !-----------------------------------------------------------!
-            itmax = 30000000       ! maximum interation number
+            itmax = 10000000       ! maximum interation number
             resi = 0               ! criteria for convergence
             tol = 1e-12            ! tolerance for convergence
 
@@ -51,8 +51,11 @@
             !-----------------------------------------------------------!
             !                   Constants for k-e model
             !-----------------------------------------------------------!
-            A0  = 42
+            A0  = 26
             Cd  = 20
+            Cp  = 0.2
+            Ce  = 70
+
             Cm  = 0.09
             Ce1 = 1.44
             Ce2 = 1.92
