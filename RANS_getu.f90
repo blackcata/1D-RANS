@@ -17,7 +17,7 @@
               ONLY : U, U_new, nu_T
 
             IMPLICIT NONE
-            INTEGER :: i,j
+            INTEGER :: j
             REAL(KIND=8) :: C0
 
             REAL(KIND=8),DIMENSION(:),ALLOCATABLE :: a,b,c,r,x
@@ -34,9 +34,9 @@
               a(j) =   2.*nu + nu_T(j-1) + nu_T(j)
               b(j) = -(4.*nu + nu_T(j+1) + 2.*nu_T(j) + nu_T(j-1))
               c(j) =   2.*nu + nu_T(j+1) + nu_T(j)
-              r(j) = -2*dy**2*C0
+              r(j) = -2.*dy**2.*C0
             END DO
-            r(0:Ny) = r(0:Ny) + b(0:Ny) * U(0:Ny)*(1-alpha)/alpha
+            r(0:Ny) = r(0:Ny) + b(0:Ny) * U(0:Ny)*(1.-alpha)/alpha
             b(0:Ny) = b(0:Ny) / alpha
             x(0:Ny) = U(0:Ny)
 
@@ -58,7 +58,7 @@
             !-----------------------------------------------------------!
             !                   Relaxation & Update
             !-----------------------------------------------------------!
-            U_new(0:Ny) = beta * x(0:Ny) + (1-beta) * U(0:Ny)
+            U_new(0:Ny) = beta * x(0:Ny) + (1.-beta) * U(0:Ny)
             DO j = 0,Ny
               resi = resi + (U_new(j) - U(j))**2.
             END DO

@@ -17,7 +17,7 @@
               ONLY : k, k_new, dis, U_new, nu_T, prod
 
             IMPLICIT NONE
-            INTEGER :: i,j
+            INTEGER :: j
 
             REAL(KIND=8),DIMENSION(:),ALLOCATABLE :: a,b,c,r,x
 
@@ -32,7 +32,7 @@
               c(j) =   Sk*2.*nu + nu_T(j+1) + nu_T(j)
               r(j) = 2.*dy**2.*Sk* ( dis(j) - prod(j) )
             END DO
-            r(0:Ny) = r(0:Ny) + b(0:Ny) * k(0:Ny)*(1-alpha)/alpha
+            r(0:Ny) = r(0:Ny) + b(0:Ny) * k(0:Ny)*(1.-alpha)/alpha
             b(0:Ny) = b(0:Ny) / alpha
             x(0:Ny) = k(0:Ny)
 
@@ -54,7 +54,7 @@
             !-----------------------------------------------------------!
             !                   Relaxation & Update
             !-----------------------------------------------------------!
-            k_new(0:Ny) = beta * x(0:Ny) + (1-beta) * k(0:Ny)
+            k_new(0:Ny) = beta * x(0:Ny) + (1.-beta) * k(0:Ny)
             k(0:Ny) = k_new(0:Ny)
             DEALLOCATE(a,b,c,r,x)
 

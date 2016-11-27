@@ -20,14 +20,14 @@
                        fm, fw
 
             IMPLICIT NONE
-            INTEGER :: i,j
+            INTEGER :: j
 
             !-----------------------------------------------------------!
             !                 Constants for simulation
             !-----------------------------------------------------------!
-            itmax = 10000000       ! maximum interation number
+            itmax = 50000000       ! maximum interation number
             resi = 0.              ! criteria for convergence
-            tol = 1e-12            ! tolerance for convergence
+            tol = 1e-10            ! tolerance for convergence
 
             Ny  = 180              ! the number of grid cells
             del = 1.               ! the channel-half height
@@ -46,7 +46,7 @@
             !         = 3 : Lam and Bremhorst (1981)
             !         = 4 : Park et al (1997)
             !-----------------------------------------------------------!
-            mode = 4
+            mode = 1
 
             !-----------------------------------------------------------!
             !                   Constants for k-e model
@@ -66,8 +66,8 @@
             !-----------------------------------------------------------!
             !                     Relaxation factors
             !-----------------------------------------------------------!
-            alpha = 0.3
-            beta  = 0.4
+            alpha = 0.1
+            beta  = 0.2
 
             ALLOCATE( U(0:NY),U_new(0:Ny),U_exac(0:Ny),Y(0:Ny),prod(0:Ny) )
             ALLOCATE( k(0:Ny),k_new(0:Ny),dis(0:Ny),dis_new(0:Ny),nu_T(0:Ny) )
@@ -79,8 +79,8 @@
             DO j = 0,Ny
               Y(j)        = j*dy
               U(j)        = 0.
-              k(j)        = 0.1000
-              dis(j)      = 0.0300
+              k(j)        = 0.01000
+              dis(j)      = 0.00500
               nu_T(j)     = 0.
               prod(j)     = 0.
 

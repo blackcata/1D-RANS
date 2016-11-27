@@ -15,7 +15,7 @@
                      dy, fw, A0, A1, Cd, Cp, Ce
 
             IMPLICIT NONE
-            INTEGER :: i,j
+            INTEGER :: j
             REAL(KIND=8) :: L, fm1, fm2, C1
             REAL(KIND=8),DIMENSION(:),ALLOCATABLE :: Rt,Y_tmp,a,b,c,r,x
 

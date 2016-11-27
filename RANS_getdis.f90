@@ -17,7 +17,7 @@
               ONLY : k_new, dis, dis_new, U_new, nu_T, prod
 
             IMPLICIT NONE
-            INTEGER :: i,j
+            INTEGER :: j
 
             REAL(KIND=8),DIMENSION(:),ALLOCATABLE :: a,b,c,r,x
 
@@ -30,8 +30,8 @@
               a(j) =   Se*2.*nu + nu_T(j-1) + nu_T(j)
               b(j) = -(Se*4.*nu + nu_T(j+1) + 2.*nu_T(j) + nu_T(j-1))
               c(j) =   Se*2.*nu + nu_T(j+1) + nu_T(j)
-              r(j) = 2.*dy**2.*Se* ( Ce2*dis(j)**2./k_new(j)                       &
-                                  - Ce1*dis(j)/k_new(j)*prod(j) )
+              r(j) = 2.*dy**2.*Se* ( Ce2*dis(j)**2./k_new(j)                    &
+                                   - Ce1*dis(j)/k_new(j)*prod(j) )
             END DO
 
             x(0:Ny) = dis(0:Ny)
@@ -46,7 +46,7 @@
             r(0)  = 2.*nu*k_new(1)/(dy**2.)
             r(Ny) = 2.*nu*k_new(Ny-1)/(dy**2.)
 
-            r(0:Ny) = r(0:Ny) + b(0:Ny) * dis(0:Ny)*(1-alpha)/alpha
+            r(0:Ny) = r(0:Ny) + b(0:Ny) * dis(0:Ny)*(1.-alpha)/alpha
             b(0:Ny) = b(0:Ny) / alpha
 
             !-----------------------------------------------------------!
@@ -57,7 +57,7 @@
             !-----------------------------------------------------------!
             !                   Relaxation & Update
             !-----------------------------------------------------------!
-            dis_new(0:Ny) = beta * x(0:Ny) + (1-beta) * dis(0:Ny)
+            dis_new(0:Ny) = beta * x(0:Ny) + (1.-beta) * dis(0:Ny)
             dis(0:Ny) = dis_new(0:Ny)
             DEALLOCATE(a,b,c,r,x)
 

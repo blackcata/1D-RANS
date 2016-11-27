@@ -14,7 +14,7 @@
               ONLY : Ny, Cm, k, dis, nu_T, fm
 
             IMPLICIT NONE
-            INTEGER :: i,j
+            INTEGER :: j
             REAL(KIND=8) :: Rt, Ry
 
             DO j = 0,Ny
