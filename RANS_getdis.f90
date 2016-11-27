@@ -18,7 +18,7 @@
 
             IMPLICIT NONE
             INTEGER :: j
-
+            
             REAL(KIND=8),DIMENSION(:),ALLOCATABLE :: a,b,c,r,x
 
             ALLOCATE ( a(0:Ny), b(0:Ny), c(0:Ny), r(0:Ny), x(0:Ny))
@@ -44,7 +44,7 @@
             b(Ny) = 1.
             a(Ny) = -1.
             c(0)  = 0.
-            r(0)  = 2.*nu*k_new(1)/(dy**2.)
+            r(0)  = nu*k_new(1)/(dy**2.)
             r(Ny) = 0
 
             !-----------------------------------------------------------!
