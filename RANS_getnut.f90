@@ -18,7 +18,7 @@
             REAL(KIND=8) :: Rt, Ry
 
             DO j = 0,Ny
-              nu_T(j) = Cm *fm(j)* k(j)**2 / dis(j)
+              nu_T(j) = Cm *fm(j)* k(j)**2. / dis(j)
               ! print*,fm(j),nu_T(j)
             END DO
 

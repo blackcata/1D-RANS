@@ -26,14 +26,14 @@
             !                 Constants for simulation
             !-----------------------------------------------------------!
             itmax = 10000000       ! maximum interation number
-            resi = 0               ! criteria for convergence
+            resi = 0.              ! criteria for convergence
             tol = 1e-12            ! tolerance for convergence
 
             Ny  = 180              ! the number of grid cells
-            del = 1                ! the channel-half height
+            del = 1.               ! the channel-half height
             dy  = (2*del)/Ny       ! grid size
 
-            Re_tau = 180           ! Reynolds number based on friction velocity
+            Re_tau = 180.          ! Reynolds number based on friction velocity
             nu     = 3.5000e-4     ! Kinematic viscosity of reference data
             u_tau  = Re_tau*nu/del ! Friction velocity
 
@@ -46,16 +46,16 @@
             !         = 3 : Lam and Bremhorst (1981)
             !         = 4 : Park et al (1997)
             !-----------------------------------------------------------!
-            mode = 1
+            mode = 4
 
             !-----------------------------------------------------------!
             !                   Constants for k-e model
             !-----------------------------------------------------------!
-            A0  = 42
-            A1  = 25
-            Cd  = 20
+            A0  = 42.
+            A1  = 25.
+            Cd  = 20.
             Cp  = 0.2
-            Ce  = 70
+            Ce  = 70.
 
             Cm  = 0.09
             Ce1 = 1.44
@@ -78,19 +78,19 @@
             !-----------------------------------------------------------!
             DO j = 0,Ny
               Y(j)        = j*dy
-              U(j)        = 0
+              U(j)        = 0.
               k(j)        = 0.1000
               dis(j)      = 0.0300
-              nu_T(j)     = 0
-              prod(j)     = 0
+              nu_T(j)     = 0.
+              prod(j)     = 0.
 
-              fm(j)       = 0
-              fw(j)       = 0
+              fm(j)       = 0.
+              fw(j)       = 0.
 
-              k_new(j)    = 0
-              U_new(j)    = 0
-              dis_new(j) = 0
-              U_exac(j)   = -(nu/(2*del))*(Re_tau/del)**2 * Y(j) * (Y(j)-2*del)
+              k_new(j)    = 0.
+              U_new(j)    = 0.
+              dis_new(j)  = 0.
+              U_exac(j)   = -(nu/(2.*del))*(Re_tau/del)**2.*Y(j)*(Y(j)-2.*del)
             END DO
 
         END SUBROUTINE SETUP

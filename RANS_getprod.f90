@@ -20,13 +20,13 @@
             INTEGER :: i,j
 
             DO j = 1,Ny-1
-              prod(j) = nu_T(j) * ((U_new(j+1) - U_new(j-1))/(2*dy))**2
+              prod(j) = nu_T(j) * ((U_new(j+1) - U_new(j-1))/(2*dy))**2.
             END DO
-            
+
             !-----------------------------------------------------------!
             !                     Boundary conditions
             !-----------------------------------------------------------!
-            prod(0)  = nu_T(0)  * (u_tau**2/nu)**2
-            prod(Ny) = nu_T(Ny) * (u_tau**2/nu)**2
+            prod(0)  = nu_T(0)  * (u_tau**2/nu)**2.
+            prod(Ny) = nu_T(Ny) * (u_tau**2/nu)**2.
 
         END SUBROUTINE GETPROD
