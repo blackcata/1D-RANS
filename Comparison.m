@@ -49,14 +49,23 @@ figure
 subplot(3,1,1)
 semilogx(Yp(1:Ny),U(1:Ny))
 hold on 
-semilogx(Yp_exac,U_exac,'o')
+semilogx(Yp_exac,U_exac,'.')
+xlabel('Y+')
+ylabel('U+')
+legend('Park(1997)','DNS')
 
 subplot(3,1,2)
 plot(Yp(1:Ny),k(1:Ny))
 hold on
 plot(Yp_exac,k_exac,'o')
+xlabel('Y+')
+ylabel('k+')
+legend('Park(1997)','DNS')
 
 subplot(3,1,3)
 plot(Yp(1:Ny),dis(1:Ny))
 hold on 
-plot(Yp_exac,dis_exac,'o')
+plot(Yp_exac,dis_exac,'.')
+xlabel('Y+')
+ylabel('\epsilon +')
+legend('Park(1997)','DNS')

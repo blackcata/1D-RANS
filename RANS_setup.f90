@@ -12,12 +12,12 @@
 
             USE RANS_module,                                                    &
                 ONLY : Ny, del, dy, Re_tau, nu, u_tau,                          &
-                       A0, A1, Cd, Cm, Cp, Ce, Ce1, Ce2, Sk, Se, alpha, beta,   &
-                       itmax, resi, tol, mode
+                       A0, A1, Cd, Cm, Cp, Ct, Ce, Ce1, Ce2, Sk, Se, alpha, beta&
+                       ,itmax, resi, tol, mode
 
             USE RANS_module,                                                    &
                 ONLY : U, U_exac, U_new, Y, k, k_new, dis, dis_new, nu_T, prod, &
-                       fm, fw
+                       fm, fw, Rt
 
             IMPLICIT NONE
             INTEGER :: j
@@ -51,23 +51,26 @@
             !-----------------------------------------------------------!
             !                   Constants for k-e model
             !-----------------------------------------------------------!
-            A0  = 14
+            A0  = 10
             A1  = 60.
             Cd  = 20.
             Cp  = 0.2
             Ce  = 70.
+            Ct  = 6.
 
-            ! Cm  = 0.09
-            ! Ce1 = 1.44
-            ! Ce2 = 1.92
-            ! Sk  = 1.0
-            ! Se  = 1.3
-
-            Cm  = 0.09
-            Ce1 = 1.45
-            Ce2 = 1.8
-            Sk  = 1.2
-            Se  = 1.3
+            IF (mode == 4) THEN
+              Cm  = 0.09
+              Ce1 = 1.45
+              Ce2 = 1.8
+              Sk  = 1.2
+              Se  = 1.3
+            ELSE
+              Cm  = 0.09
+              Ce1 = 1.44
+              Ce2 = 1.92
+              Sk  = 1.0
+              Se  = 1.3
+            END IF
 
             !-----------------------------------------------------------!
             !                     Relaxation factors
@@ -77,7 +80,7 @@
 
             ALLOCATE( U(0:NY),U_new(0:Ny),U_exac(0:Ny),Y(0:Ny),prod(0:Ny) )
             ALLOCATE( k(0:Ny),k_new(0:Ny),dis(0:Ny),dis_new(0:Ny),nu_T(0:Ny) )
-            ALLOCATE( fm(0:Ny), fw(0:Ny) )
+            ALLOCATE( fm(0:Ny), fw(0:Ny), Rt(0:Ny) )
 
             !-----------------------------------------------------------!
             !                      Initial Conditions

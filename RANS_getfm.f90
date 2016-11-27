@@ -11,15 +11,14 @@
         SUBROUTINE GETFM
 
             USE RANS_module,                                                    &
-              ONLY : Ny, Cm, k, dis, nu_T, fm, prod, nu, u_tau, Y, del, mode,   &
-                     dy, fw, A0, A1, Cd, Cp, Ce
+              ONLY : Ny, Cm, k, dis, nu_T, fm, prod, Rt, nu, u_tau, Y, del, mode&
+                     ,dy, fw, A0, A1, Cd, Cp, Ce 
 
             IMPLICIT NONE
             INTEGER :: j
             REAL(KIND=8) :: L, fm1, fm2, C1
-            REAL(KIND=8),DIMENSION(:),ALLOCATABLE :: Rt,a,b,c,r,x
+            REAL(KIND=8),DIMENSION(:),ALLOCATABLE :: a,b,c,r,x
 
-            ALLOCATE( Rt(0:Ny))
             ALLOCATE( a(0:Ny), b(0:Ny), c(0:Ny), r(0:Ny), x(0:Ny) )
 
             IF (mode == 4) THEN
