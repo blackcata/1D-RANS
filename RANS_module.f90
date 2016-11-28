@@ -12,7 +12,7 @@
 
             INTEGER :: Ny, itmax, mode
             REAL(KIND=8) :: del, dy, Re_tau, nu, u_tau, resi, tol, alpha, beta
-            REAL(KIND=8) :: A1, A4, C1, Cd, Cm, Cp, Ct, Ce, Ce1, Ce2, Sk, Se
+            REAL(KIND=8) :: A1, A4, B0, C1, Cd, Cm, Cp, Ct, Ce, Ce1, Ce2, Sk, Se
             CHARACTER(LEN=65) :: file_name, path_name
 
             REAL(KIND=8),DIMENSION(:),ALLOCATABLE :: U, U_exac, Y, k, dis, nu_T,&
