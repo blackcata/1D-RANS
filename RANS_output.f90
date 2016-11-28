@@ -58,6 +58,17 @@
         END DO
         CLOSE(100)
 
+        !----------------------------------------------------------!
+        !            Outputs for fm(damping function)
+        !----------------------------------------------------------!
+        file_name = TRIM(path_name)//'/fm.plt'
+        OPEN(100,FILE=file_name,FORM='FORMATTED',POSITION='APPEND')
+        ! WRITE(100,*) 'VARIABLES="Y","Y+","fm"'
+        DO j = 0,Ny
+            WRITE(100,"(4F15.9)") Y(j), Y(j)/(del/Re_tau),fm(j)
+        END DO
+        CLOSE(100)
+
         DEALLOCATE(U,U_new,U_exac,Y,k,k_new,dis,dis_new,nu_T,fm)
 
     END SUBROUTINE OUTPUT

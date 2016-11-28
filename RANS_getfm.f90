@@ -78,7 +78,7 @@
                     ! print*,fm(j),fm1,fm2
                   END DO
                   fm(0)  = 0.
-                  fm(Ny) = 0.
+                  fm(Ny) = fm(Ny-1)
              END SELECT
 
         END SUBROUTINE GETFM

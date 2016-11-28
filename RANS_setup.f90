@@ -12,8 +12,8 @@
 
             USE RANS_module,                                                    &
                 ONLY : Ny, del, dy, Re_tau, nu, u_tau,                          &
-                       A1, A4, Cd, Cm, Cp, Ct, Ce, Ce1, Ce2, Sk, Se, alpha, beta&
-                       ,itmax, resi, tol, mode
+                       A1, A4, C1, Cd, Cm, Cp, Ct, Ce, Ce1, Ce2, Sk, Se,        &
+                       itmax, resi, tol, mode, alpha, beta
 
             USE RANS_module,                                                    &
                 ONLY : U, U_exac, U_new, Y, k, k_new, dis, dis_new, nu_T, prod, &
@@ -54,6 +54,7 @@
 
             A1  = 60.
             A4  = 10.
+            C1  = 0.4
             Cd  = 20.
             Cp  = 0.2
             Ce  = 70.
